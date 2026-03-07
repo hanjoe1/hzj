@@ -2,19 +2,30 @@ body {
   background-color: #0099cc;
   color: #fff;
 
-  /* Allow mouse dragging. */
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 
-  /* disable touch panning/zooming */
   -ms-touch-action: none;
   touch-action: none;
 
-  /* Allow canvas to hit the edges of the browser viewport. */
   margin: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  body {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    overflow: hidden;
+  }
 }
 
 #screen canvas {
