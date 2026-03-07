@@ -81,6 +81,17 @@
             #controls { grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(2, 56px); gap: 4px; }
             #controls button { width: 56px; height: 56px; font-size: 1.4rem; }
         }
+        @media (pointer: coarse) {
+            #controls { display: none !important; }
+            #swipe-hint { display: block; }
+        }
+        #swipe-hint {
+            display: none;
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -99,6 +110,7 @@
         <button ontouchstart="setDir(0,1)" onclick="setDir(0,1)">&#9660;</button>
         <button ontouchstart="setDir(1,0)" onclick="setDir(1,0)">&#9654;</button>
     </div>
+    <div id="swipe-hint">👆 在屏幕任意位置滑动控制方向</div>
 
     <script>
     const canvas = document.getElementById('c');
@@ -235,18 +247,25 @@
         if (d) { e.preventDefault(); setDir(d[0], d[1]); }
     });
 
-    // Swipe gesture on canvas
-    let touchStartX = 0, touchStartY = 0;
-    canvas.addEventListener('touchstart', e => {
+    // Swipe gesture on entire screen
+    let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+    document.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        e.preventDefault();
+        touchStartTime = Date.now();
+        if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') e.preventDefault();
     }, {passive: false});
 
-    canvas.addEventListener('touchend', e => {
+    document.addEventListener('touchmove', e => {
+        if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') e.preventDefault();
+    }, {passive: false});
+
+    document.addEventListener('touchend', e => {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
         const dxT = e.changedTouches[0].clientX - touchStartX;
         const dyT = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dxT) < 10 && Math.abs(dyT) < 10) return;
+        const dist = Math.sqrt(dxT * dxT + dyT * dyT);
+        if (dist < 15) return;
         if (Math.abs(dxT) > Math.abs(dyT)) {
             setDir(dxT > 0 ? 1 : -1, 0);
         } else {
