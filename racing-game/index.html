@@ -144,41 +144,10 @@
     #t-brake.active, #t-brake:active {
       background: rgba(231,76,60,0.6);
     }
-    #rotate-hint {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 500;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-    }
-    #rotate-hint .icon { font-size: 4rem; margin-bottom: 16px; animation: rock 1.5s ease-in-out infinite; }
-    #rotate-hint p { font-size: 1.1rem; color: #ccc; margin-bottom: 20px; }
-    #rotate-hint button {
-      padding: 10px 28px; background: #ff9f43; color: #222; border: none; border-radius: 8px;
-      font-weight: bold; font-size: 0.95rem; cursor: pointer;
-    }
-    @keyframes rock {
-      0%,100% { transform: rotate(0deg); }
-      25% { transform: rotate(90deg); }
-      75% { transform: rotate(90deg); }
-    }
-
     @media (max-width: 900px) {
       #touch-controls { display: block; }
       #hud { font-size: 0.7em; }
       body { touch-action: none; user-select: none; -webkit-user-select: none; }
-    }
-    @media (max-width: 900px) and (orientation: portrait) {
-      #rotate-hint { display: flex; }
-    }
-    @media (max-width: 900px) and (orientation: landscape) {
-      #rotate-hint { display: none !important; }
     }
   </style>
 </head> 
@@ -292,7 +261,7 @@
     var trackLength    = null;                    // z length of entire track (computed)
     var lanes          = 3;                       // number of lanes
     var fieldOfView    = 100;                     // angle (degrees) for field of view
-    var cameraHeight   = 1000;                    // z height of camera
+    var cameraHeight   = 2500;                    // z height of camera (raised for portrait view)
     var cameraDepth    = null;                    // z distance camera is from screen (computed)
     var drawDistance   = 300;                     // number of segments to draw
     var playerX        = 0;                       // player x offset from center of road (-1 to 1 to stay independent of roadWidth)
@@ -957,12 +926,6 @@
     });
 
   </script>
-
-  <div id="rotate-hint">
-    <div class="icon">📱</div>
-    <p>请横屏游玩狐狐飙车</p>
-    <button onclick="document.getElementById('rotate-hint').style.display='none'">继续竖屏玩</button>
-  </div>
 
   <div id="touch-controls">
     <div id="joystick-zone">
