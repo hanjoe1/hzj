@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>狗狗方块</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0f0e17;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            height: 100dvh;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        h1 { font-size: 1.5rem; margin-bottom: 4px; color: #ff8906; text-shadow: 0 0 20px rgba(255,137,6,0.3); }
+
+        /* Desktop: side by side */
+        .game-wrap { display: flex; gap: 12px; align-items: flex-start; }
+        canvas { border: 2px solid #ff8906; border-radius: 8px; box-shadow: 0 0 30px rgba(255,137,6,0.15); }
+        .side { display: flex; flex-direction: column; gap: 8px; }
+        .info-box {
+            background: #1a1a2e;
+            border: 1px solid #ff8906;
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 80px;
+        }
+        .info-box label { font-size: 0.65rem; color: #a7a9be; text-transform: uppercase; }
+        .info-box .val { font-size: 1.2rem; font-weight: bold; color: #ff8906; }
+
+        /* Mobile info bar (hidden on desktop) */
+        .mobile-info { display: none; }
+
+        #controls {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            grid-template-rows: 60px;
+            gap: 6px;
+        }
+        #controls button {
+            width: 60px; height: 60px;
+            background: #1a1a2e;
+            color: #ff8906;
+            border: 1px solid #ff8906;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        #controls button:active { background: #ff8906; color: #0f0e17; }
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+        }
+        #overlay .box {
+            background: #1a1a2e;
+            border: 2px solid #ff8906;
+            border-radius: 16px;
+            padding: 30px 40px;
+            text-align: center;
+            max-width: 90vw;
+        }
+        #overlay h2 { color: #ff8906; margin-bottom: 10px; }
+        #overlay p { margin-bottom: 15px; color: #a7a9be; }
+        #overlay button {
+            padding: 12px 30px;
+            background: #ff8906;
+            color: #0f0e17;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 1.2rem; margin-bottom: 2px; }
+            .game-wrap { flex-direction: column; align-items: center; gap: 0; }
+            .side { display: none; }
+            .mobile-info {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 6px;
+                align-items: center;
+                justify-content: center;
+            }
+            .mobile-info .mi {
+                background: #1a1a2e;
+                border: 1px solid #ff8906;
+                border-radius: 6px;
+                padding: 4px 10px;
+                text-align: center;
+            }
+            .mobile-info .mi-label { font-size: 0.55rem; color: #a7a9be; text-transform: uppercase; display: block; }
+            .mobile-info .mi-val { font-size: 1rem; font-weight: bold; color: #ff8906; }
+            .mobile-info .mi-next canvas { border: 1px solid #ff8906; border-radius: 4px; vertical-align: middle; }
+            #controls { grid-template-columns: repeat(4, 56px); gap: 5px; margin-top: 6px; }
+            #controls button { width: 56px; height: 56px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="../" style="position:fixed;top:10px;left:10px;background:rgba(255,137,6,0.9);color:#0f0e17;text-decoration:none;padding:6px 12px;border-radius:8px;font-weight:bold;font-size:0.8rem;z-index:100;">🏠 返回</a>
+    <h1>狗狗方块</h1>
+
+    <div class="mobile-info">
+        <div class="mi"><span class="mi-label">得分</span><span class="mi-val" id="m-score">0</span></div>
+        <div class="mi"><span class="mi-label">行数</span><span class="mi-val" id="m-lines">0</span></div>
+        <div class="mi"><span class="mi-label">等级</span><span class="mi-val" id="m-level">1</span></div>
+        <div class="mi mi-next"><span class="mi-label">下一个</span><canvas id="m-next" width="56" height="56"></canvas></div>
+    </div>
+
+    <div class="game-wrap">
+        <canvas id="board"></canvas>
+        <div class="side">
+            <div class="info-box"><label>得分</label><div class="val" id="score">0</div></div>
+            <div class="info-box"><label>行数</label><div class="val" id="lines">0</div></div>
+            <div class="info-box"><label>等级</label><div class="val" id="level">1</div></div>
+            <div class="info-box"><label>下一个</label><canvas id="next" width="80" height="80"></canvas></div>
+        </div>
+    </div>
+    <div id="controls">
+        <button onclick="move(-1)">&#9664;</button>
+        <button onclick="rotate()">&#8635;</button>
+        <button onclick="drop()">&#11015;</button>
+        <button onclick="move(1)">&#9654;</button>
+    </div>
+    <div id="overlay"><div class="box"><h2>狗狗方块</h2><p>方向键控制 / 滑动操作</p><button onclick="startGame()">开始叠狗</button></div></div>
+
+    <script>
+    const COLS = 10, ROWS = 20;
+    let SZ;
+    const boardCanvas = document.getElementById('board');
+    const ctx = boardCanvas.getContext('2d');
+    const nCanvas = document.getElementById('next');
+    const nCtx = nCanvas.getContext('2d');
+    const mNextCanvas = document.getElementById('m-next');
+    const mNextCtx = mNextCanvas ? mNextCanvas.getContext('2d') : null;
+
+    const isMobile = () => window.innerWidth <= 500;
+
+    function resizeBoard() {
+        if (isMobile()) {
+            const maxH = window.innerHeight - 190;
+            const maxW = window.innerWidth - 20;
+            SZ = Math.floor(Math.min(maxH / ROWS, maxW / COLS));
+            SZ = Math.max(SZ, 12);
+        } else {
+            const maxH = window.innerHeight - 160;
+            const maxW = (window.innerWidth - 140) * 0.6;
+            SZ = Math.floor(Math.min(maxH / ROWS, maxW / COLS));
+            SZ = Math.max(SZ, 14);
+            SZ = Math.min(SZ, 24);
+        }
+        boardCanvas.width = COLS * SZ;
+        boardCanvas.height = ROWS * SZ;
+    }
+    resizeBoard();
+
+    const SHAPES = [
+        [[1,1,1,1]],
+        [[1,1],[1,1]],
+        [[0,1,1],[1,1,0]],
+        [[1,1,0],[0,1,1]],
+        [[1,0,0],[1,1,1]],
+        [[0,0,1],[1,1,1]],
+        [[0,1,0],[1,1,1]]
+    ];
+    const COLORS = ['#00d4aa','#f7b731','#fc5c65','#a55eea','#26de81','#fd9644','#4b7bec'];
+
+    let board, piece, nextPiece, px, py, score, lines, level, timer, gameOver;
+
+    function newBoard() { return Array.from({length: ROWS}, () => Array(COLS).fill(0)); }
+
+    function newPiece() {
+        const i = Math.floor(Math.random() * SHAPES.length);
+        return { shape: SHAPES[i].map(r => [...r]), color: COLORS[i], idx: i };
+    }
+
+    function startGame() {
+        document.getElementById('overlay').style.display = 'none';
+        board = newBoard(); score = 0; lines = 0; level = 1; gameOver = false;
+        piece = newPiece(); nextPiece = newPiece();
+        px = Math.floor((COLS - piece.shape[0].length) / 2); py = 0;
+        updateUI();
+        if (timer) clearInterval(timer);
+        timer = setInterval(tick, 500);
+    }
+
+    function updateUI() {
+        document.getElementById('score').textContent = score;
+        document.getElementById('lines').textContent = lines;
+        document.getElementById('level').textContent = level;
+        if (isMobile()) {
+            document.getElementById('m-score').textContent = score;
+            document.getElementById('m-lines').textContent = lines;
+            document.getElementById('m-level').textContent = level;
+        }
+        drawNext();
+    }
+
+    function collides(shape, tx, ty) {
+        for (let r = 0; r < shape.length; r++)
+            for (let c = 0; c < shape[r].length; c++)
+                if (shape[r][c]) {
+                    const nx = tx + c, ny = ty + r;
+                    if (nx < 0 || nx >= COLS || ny >= ROWS || (ny >= 0 && board[ny][nx])) return true;
+                }
+        return false;
+    }
+
+    function lock() {
+        for (let r = 0; r < piece.shape.length; r++)
+            for (let c = 0; c < piece.shape[r].length; c++)
+                if (piece.shape[r][c] && py + r >= 0) board[py + r][px + c] = piece.color;
+        let cleared = 0;
+        for (let r = ROWS - 1; r >= 0; r--) {
+            if (board[r].every(c => c)) { board.splice(r, 1); board.unshift(Array(COLS).fill(0)); cleared++; r++; }
+        }
+        if (cleared) {
+            lines += cleared;
+            score += [0, 100, 300, 500, 800][cleared] * level;
+            level = Math.floor(lines / 10) + 1;
+            clearInterval(timer);
+            timer = setInterval(tick, Math.max(100, 500 - (level - 1) * 40));
+        }
+        piece = nextPiece; nextPiece = newPiece();
+        px = Math.floor((COLS - piece.shape[0].length) / 2); py = 0;
+        if (collides(piece.shape, px, py)) {
+            gameOver = true; clearInterval(timer);
+            const ov = document.getElementById('overlay');
+            ov.querySelector('.box').innerHTML = `<h2>游戏结束</h2><p>得分: ${score}</p><button onclick="startGame()">再来一局</button>`;
+            ov.style.display = 'flex';
+        }
+        updateUI();
+    }
+
+    function tick() { if (!collides(piece.shape, px, py + 1)) py++; else lock(); drawBoard(); }
+    function move(d) { if (!gameOver && !collides(piece.shape, px + d, py)) { px += d; drawBoard(); } }
+    function rotate() {
+        if (gameOver) return;
+        const s = piece.shape;
+        const rotated = s[0].map((_, i) => s.map(r => r[i]).reverse());
+        if (!collides(rotated, px, py)) { piece.shape = rotated; drawBoard(); }
+    }
+    function drop() { if (gameOver) return; while (!collides(piece.shape, px, py + 1)) py++; lock(); drawBoard(); }
+    function softDrop() { if (!gameOver && !collides(piece.shape, px, py + 1)) { py++; drawBoard(); } }
+
+    function drawBlock(c, x, y, sz, glow) {
+        if (glow) {
+            c.font = `${sz - 2}px serif`;
+            c.textAlign = 'center';
+            c.textBaseline = 'middle';
+            c.fillText('🐶', x + sz / 2, y + sz / 2);
+        } else {
+            c.fillStyle = '#1e1e3a';
+            c.beginPath(); c.roundRect(x + 1, y + 1, sz - 2, sz - 2, 3); c.fill();
+        }
+    }
+
+    function drawBoard() {
+        ctx.fillStyle = '#0a0a1a'; ctx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
+        for (let r = 0; r < ROWS; r++)
+            for (let c = 0; c < COLS; c++) {
+                if (board[r][c]) drawBlock(ctx, c * SZ, r * SZ, SZ, board[r][c]);
+                else { ctx.strokeStyle = '#1a1a30'; ctx.strokeRect(c * SZ, r * SZ, SZ, SZ); }
+            }
+        for (let r = 0; r < piece.shape.length; r++)
+            for (let c = 0; c < piece.shape[r].length; c++)
+                if (piece.shape[r][c]) drawBlock(ctx, (px + c) * SZ, (py + r) * SZ, SZ, piece.color);
+    }
+
+    function drawNext() {
+        // Desktop preview
+        const nsz = 20;
+        nCtx.fillStyle = '#1a1a2e'; nCtx.fillRect(0, 0, 80, 80);
+        const s = nextPiece.shape, ox = (80 - s[0].length * nsz) / 2, oy = (80 - s.length * nsz) / 2;
+        for (let r = 0; r < s.length; r++)
+            for (let c = 0; c < s[r].length; c++)
+                if (s[r][c]) drawBlock(nCtx, ox + c * nsz, oy + r * nsz, nsz, nextPiece.color);
+
+        // Mobile preview
+        if (mNextCtx) {
+            const msz = 14;
+            mNextCtx.fillStyle = '#1a1a2e'; mNextCtx.fillRect(0, 0, 56, 56);
+            const mox = (56 - s[0].length * msz) / 2, moy = (56 - s.length * msz) / 2;
+            for (let r = 0; r < s.length; r++)
+                for (let c = 0; c < s[r].length; c++)
+                    if (s[r][c]) drawBlock(mNextCtx, mox + c * msz, moy + r * msz, msz, nextPiece.color);
+        }
+    }
+
+    document.addEventListener('keydown', e => {
+        if (gameOver) return;
+        switch (e.key) {
+            case 'ArrowLeft': case 'a': e.preventDefault(); move(-1); break;
+            case 'ArrowRight': case 'd': e.preventDefault(); move(1); break;
+            case 'ArrowDown': case 's': e.preventDefault(); softDrop(); break;
+            case 'ArrowUp': case 'w': e.preventDefault(); rotate(); break;
+            case ' ': e.preventDefault(); drop(); break;
+        }
+    });
+
+    let tStartX = 0, tStartY = 0, tStartTime = 0;
+    boardCanvas.addEventListener('touchstart', e => {
+        tStartX = e.touches[0].clientX;
+        tStartY = e.touches[0].clientY;
+        tStartTime = Date.now();
+        e.preventDefault();
+    }, {passive: false});
+
+    boardCanvas.addEventListener('touchend', e => {
+        if (gameOver) return;
+        const dxT = e.changedTouches[0].clientX - tStartX;
+        const dyT = e.changedTouches[0].clientY - tStartY;
+        const dt = Date.now() - tStartTime;
+        if (Math.abs(dxT) < 15 && Math.abs(dyT) < 15 && dt < 300) { rotate(); return; }
+        if (Math.abs(dxT) > Math.abs(dyT)) {
+            if (Math.abs(dxT) > 20) move(dxT > 0 ? 1 : -1);
+        } else {
+            if (dyT > 30) drop();
+        }
+        e.preventDefault();
+    }, {passive: false});
+
+    window.addEventListener('resize', () => { resizeBoard(); if (board) drawBoard(); });
+
+    board = newBoard();
+    piece = newPiece(); nextPiece = newPiece();
+    px = Math.floor((COLS - piece.shape[0].length) / 2); py = 0;
+    drawBoard();
+    </script>
+</body>
+</html>

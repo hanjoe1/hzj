@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>狐狐吃狗</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            height: 100dvh;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        h1 { font-size: 1.6rem; margin-bottom: 6px; color: #ff9f43; text-shadow: 0 0 20px rgba(255,159,67,0.3); }
+        #score { font-size: 1rem; margin-bottom: 8px; color: #e0e0e0; }
+        #gameArea { position: relative; }
+        canvas {
+            border: 2px solid #ff9f43;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255,159,67,0.2);
+            background: #16213e;
+            display: block;
+        }
+        #controls {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(2, 60px);
+            gap: 5px;
+        }
+        #controls button {
+            width: 60px; height: 60px;
+            background: #0f3460;
+            color: #ff9f43;
+            border: 1px solid #ff9f43;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        #controls button:active { background: #ff9f43; color: #1a1a2e; }
+        #msg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85);
+            padding: 24px 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #ff9f43;
+            z-index: 10;
+            max-width: 90vw;
+        }
+        #msg h2 { color: #ff9f43; margin-bottom: 10px; font-size: 1.3rem; }
+        #msg p { margin-bottom: 15px; font-size: 0.95rem; }
+        #msg button {
+            padding: 12px 30px;
+            background: #ff9f43;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .empty { visibility: hidden; }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 1.3rem; margin-bottom: 4px; }
+            #score { font-size: 0.9rem; margin-bottom: 6px; }
+            #controls { grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(2, 56px); gap: 4px; }
+            #controls button { width: 56px; height: 56px; font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="../" style="position:fixed;top:10px;left:10px;background:rgba(255,159,67,0.9);color:#1a1a2e;text-decoration:none;padding:6px 12px;border-radius:8px;font-weight:bold;font-size:0.8rem;z-index:100;">🏠 返回</a>
+    <h1>🦊 狐狐吃狗 🐶</h1>
+    <div id="score">已吃狗: <span id="pts">0</span> 只</div>
+    <div id="gameArea">
+        <canvas id="c"></canvas>
+        <div id="msg"><h2>🦊 狐狐吃狗</h2><p>滑动屏幕或点击按钮控制狐狐</p><button onclick="startGame()">开始吃狗</button></div>
+    </div>
+    <div id="controls">
+        <div class="empty"></div>
+        <button ontouchstart="setDir(0,-1)" onclick="setDir(0,-1)">&#9650;</button>
+        <div class="empty"></div>
+        <button ontouchstart="setDir(-1,0)" onclick="setDir(-1,0)">&#9664;</button>
+        <button ontouchstart="setDir(0,1)" onclick="setDir(0,1)">&#9660;</button>
+        <button ontouchstart="setDir(1,0)" onclick="setDir(1,0)">&#9654;</button>
+    </div>
+
+    <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    let gridSize, cols, rows, canvasSize;
+
+    function resizeCanvas() {
+        const maxW = Math.min(window.innerWidth - 20, 400);
+        const maxH = window.innerHeight - 220;
+        canvasSize = Math.min(maxW, maxH);
+        canvasSize = Math.max(canvasSize, 200);
+        canvasSize = Math.floor(canvasSize / 20) * 20;
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
+        gridSize = canvasSize / 20;
+        cols = 20;
+        rows = 20;
+    }
+    resizeCanvas();
+
+    let snake, food, dx, dy, ndx, ndy, score, running, timer;
+    let blackDogs, blackDogTimer;
+
+    const foxEmoji = '🦊';
+    const dogEmoji = '🐶';
+    const blackDogEmoji = '🐕‍🦺';
+
+    function startGame() {
+        document.getElementById('msg').style.display = 'none';
+        snake = [{x: 10, y: 10}];
+        dx = 1; dy = 0; ndx = 1; ndy = 0;
+        score = 0;
+        blackDogs = [];
+        document.getElementById('pts').textContent = 0;
+        placeFood();
+        running = true;
+        if (timer) clearInterval(timer);
+        if (blackDogTimer) clearInterval(blackDogTimer);
+        timer = setInterval(tick, 180);
+        blackDogTimer = setInterval(spawnBlackDog, 3000);
+    }
+
+    function placeFood() {
+        let pos;
+        do { pos = {x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows)}; }
+        while (snake.some(s => s.x === pos.x && s.y === pos.y) || blackDogs.some(b => b.x === pos.x && b.y === pos.y));
+        food = pos;
+    }
+
+    function isOccupied(x, y) {
+        return snake.some(s => s.x === x && s.y === y) ||
+               (food && food.x === x && food.y === y) ||
+               blackDogs.some(b => b.x === x && b.y === y);
+    }
+
+    function spawnBlackDog() {
+        if (!running) return;
+        let pos, attempts = 0;
+        do {
+            pos = {x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows)};
+            attempts++;
+        } while (isOccupied(pos.x, pos.y) && attempts < 50);
+        if (attempts < 50) {
+            pos.ttl = 40;
+            blackDogs.push(pos);
+        }
+    }
+
+    function setDir(x, y) {
+        if (x === -dx && y === -dy) return;
+        ndx = x; ndy = y;
+    }
+
+    function gameOver(msg) {
+        running = false;
+        clearInterval(timer);
+        clearInterval(blackDogTimer);
+        const m = document.getElementById('msg');
+        m.innerHTML = `<h2>${msg}</h2><p>共吃掉 ${score} 只狗 🐶</p><button onclick="startGame()">再吃一轮</button>`;
+        m.style.display = 'block';
+    }
+
+    function tick() {
+        dx = ndx; dy = ndy;
+        const head = {x: (snake[0].x + dx + cols) % cols, y: (snake[0].y + dy + rows) % rows};
+
+        if (snake.some(s => s.x === head.x && s.y === head.y)) {
+            gameOver('狐狐咬到自己了!');
+            return;
+        }
+        if (blackDogs.some(b => b.x === head.x && b.y === head.y)) {
+            gameOver('狐狐不要作死!');
+            return;
+        }
+
+        snake.unshift(head);
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            document.getElementById('pts').textContent = score;
+            placeFood();
+        } else {
+            snake.pop();
+        }
+
+        blackDogs.forEach(b => b.ttl--);
+        blackDogs = blackDogs.filter(b => b.ttl > 0);
+        draw();
+    }
+
+    function draw() {
+        const g = gridSize;
+        ctx.fillStyle = '#16213e';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = `${g - 2}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        snake.forEach(s => {
+            ctx.fillText(foxEmoji, s.x * g + g / 2, s.y * g + g / 2);
+        });
+        ctx.fillText(dogEmoji, food.x * g + g / 2, food.y * g + g / 2);
+
+        blackDogs.forEach(b => {
+            ctx.globalAlpha = b.ttl < 10 ? b.ttl / 10 : 1;
+            ctx.fillText(blackDogEmoji, b.x * g + g / 2, b.y * g + g / 2);
+        });
+        ctx.globalAlpha = 1;
+    }
+
+    document.addEventListener('keydown', e => {
+        const map = {ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]};
+        const d = map[e.key];
+        if (d) { e.preventDefault(); setDir(d[0], d[1]); }
+    });
+
+    // Swipe gesture on canvas
+    let touchStartX = 0, touchStartY = 0;
+    canvas.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        e.preventDefault();
+    }, {passive: false});
+
+    canvas.addEventListener('touchend', e => {
+        const dxT = e.changedTouches[0].clientX - touchStartX;
+        const dyT = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dxT) < 10 && Math.abs(dyT) < 10) return;
+        if (Math.abs(dxT) > Math.abs(dyT)) {
+            setDir(dxT > 0 ? 1 : -1, 0);
+        } else {
+            setDir(0, dyT > 0 ? 1 : -1);
+        }
+        e.preventDefault();
+    }, {passive: false});
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        if (snake) draw();
+    });
+
+    snake = [{x: 10, y: 10}];
+    blackDogs = [];
+    food = {x: 15, y: 10};
+    draw();
+    </script>
+</body>
+</html>

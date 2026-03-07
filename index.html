@@ -1,49 +1,260 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <title>狐狐逃跑大冒险</title>
-        <link rel="apple-touch-icon-precomposed" href="data/img/touch-icon-iphone.png"/>
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="data/img/touch-icon-iphone-retina.png"/>
-        <link rel="shortcut icon" href="data/img/favicon.ico">
-        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Clumsy Bird">
-        <meta charset="UTF-8" />
-        <meta name="description" content="Clumsy Bird - A Flappy Bird clone using MelonJS"/>
-        <meta name="keywords" content="flappybird, flappy, bird, game, html5, melonjs,clone"/>
-        <meta name="robots" content="index, follow">
-        <meta name="google-site-verification" content="RDZI9SqVaffd48uHfZMv67-YdvviOMe2HuULEYqVgd4" />
-        <meta property="og:image" content="http://ellisonleao.github.io/clumsy-bird/data/img/bg.png" />
-        <meta property="og:title" content="Clumsy Bird - A Flappy Bird clone using MelonJS"/>
-        <meta property="og:url" content="http://ellisonleao.github.io/clumsy-bird/"/>
-        <meta property="og:site_name" content="Clumsy Bird - MelonJS"/>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>狐狐游乐场</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        <!-- Twitter Card -->
-        <meta name="twitter:hashtag" content="clumsybird" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@ellisonleao" />
-        <meta name="twitter:creator" content="@ellisonleao" />
-        <meta name="twitter:title" content="Clumsy Bird" />
-        <meta name="twitter:description" content="A Flappy Bird melonJS clone" />
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-        <!-- Humans -->
-        <link rel="author" href="humans.txt" />
-    </head>
+        .bg-particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    <body>
-        <!-- Canvas placeholder -->
-        <div id="screen"></div>
+        header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
 
-        <!-- melonJS Library -->
-        <script type="text/javascript" src="js/melonJS-min.js" ></script>
-        <script type="text/javascript" src="build/clumsy-min.js" ></script>
-        <script type="text/javascript">
-            window.onReady(function onReady() {
-                game.onload();
-            });
-        </script>
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4aa, #7b68ee, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
 
-    </body>
+        header p {
+            font-size: 1.1rem;
+            color: #a0a0c0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 30px auto 60px;
+            padding: 0 24px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--glow);
+        }
+
+        .card-banner {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(15, 12, 41, 0.8));
+        }
+
+        .card-body {
+            padding: 20px 24px 24px;
+        }
+
+        .card-body h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .game-card:hover .play-btn {
+            box-shadow: 0 4px 20px var(--glow);
+        }
+
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 30px;
+            color: #505070;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #7b68ee; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            header { padding: 30px 16px 16px; }
+            .games-grid { gap: 14px; padding: 0 14px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+            .card-banner { height: 110px; font-size: 3rem; }
+            .card-body { padding: 14px 16px 16px; }
+            .card-body h2 { font-size: 1.1rem; margin-bottom: 6px; }
+            .play-btn { padding: 8px 16px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="bg-particles" id="particles"></canvas>
+
+    <header>
+        <h1>狐狐游乐场</h1>
+    </header>
+
+    <div class="games-grid">
+        <a class="game-card" href="clumsy-bird/" style="--bg: linear-gradient(135deg, #1a5276, #2ecc71); --accent: #2ecc71; --glow: rgba(46,204,113,0.3);">
+            <div class="card-banner">🦊💨</div>
+            <div class="card-body">
+                <h2>狐狐逃跑大冒险</h2>
+                <span class="play-btn">🦊 开始跑路 &#9654;</span>
+            </div>
+        </a>
+
+        <a class="game-card" href="2048-game/" style="--bg: linear-gradient(135deg, #7b4397, #dc2430); --accent: #f7b731; --glow: rgba(247,183,49,0.3);">
+            <div class="card-banner"><span style="position:relative;display:inline-block">🦊🔢<span style="font-size:2.5rem;position:absolute;bottom:-0.3rem;right:-1.2rem">🐶</span></span></div>
+            <div class="card-body">
+                <h2>狐狐算数</h2>
+                <span class="play-btn">🦊 开始掰指头 &#9654;</span>
+            </div>
+        </a>
+
+        <a class="game-card" href="snake-game/" style="--bg: linear-gradient(135deg, #0f3443, #34e89e); --accent: #00d4aa; --glow: rgba(0,212,170,0.3);">
+            <div class="card-banner"><span style="display:inline-flex;align-items:center;gap:0"><span style="font-size:5rem">🦊</span><span style="font-size:3.5rem;margin-left:-0.5rem">👄</span><span style="font-size:3rem;margin-left:-0.3rem;opacity:0.85">🐶</span></span></div>
+            <div class="card-body">
+                <h2>狐狐吃狗</h2>
+                <span class="play-btn">🦊 开始吃狗 &#9654;</span>
+            </div>
+        </a>
+
+        <a class="game-card" href="tetris-game/" style="--bg: linear-gradient(135deg, #4b134f, #c94b4b); --accent: #ff8906; --glow: rgba(255,137,6,0.3);">
+            <div class="card-banner">🐶🐶🐶</div>
+            <div class="card-body">
+                <h2>狗狗方块</h2>
+                <span class="play-btn">🦊 开始叠狗 &#9654;</span>
+            </div>
+        </a>
+
+        <a class="game-card" href="racing-game/" style="--bg: linear-gradient(135deg, #1a1a2e, #e74c3c); --accent: #e74c3c; --glow: rgba(231,76,60,0.3);">
+            <div class="card-banner"><span style="position:relative;display:inline-block;font-size:7rem"><span style="font-size:2.8rem;position:absolute;top:-1rem;left:1.8rem;z-index:1">🦊</span>🏎️</span></div>
+            <div class="card-body">
+                <h2>狐狐飙车</h2>
+                <span class="play-btn">🦊 开始飙车 &#9654;</span>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://github.com/hanjoe1/hzj" target="_blank">GitHub Pages</a></p>
+    </footer>
+
+    <script>
+    const cvs = document.getElementById('particles');
+    const c = cvs.getContext('2d');
+    let W, H, dots = [];
+
+    function resize() {
+        W = cvs.width = window.innerWidth;
+        H = cvs.height = window.innerHeight;
+    }
+
+    function init() {
+        resize();
+        dots = Array.from({length: 60}, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 2 + 0.5,
+            dx: (Math.random() - 0.5) * 0.4,
+            dy: (Math.random() - 0.5) * 0.4,
+            o: Math.random() * 0.4 + 0.1
+        }));
+    }
+
+    function draw() {
+        c.clearRect(0, 0, W, H);
+        dots.forEach(d => {
+            d.x += d.dx; d.y += d.dy;
+            if (d.x < 0) d.x = W; if (d.x > W) d.x = 0;
+            if (d.y < 0) d.y = H; if (d.y > H) d.y = 0;
+            c.beginPath();
+            c.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+            c.fillStyle = `rgba(123, 104, 238, ${d.o})`;
+            c.fill();
+        });
+        for (let i = 0; i < dots.length; i++)
+            for (let j = i + 1; j < dots.length; j++) {
+                const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    c.beginPath();
+                    c.moveTo(dots[i].x, dots[i].y);
+                    c.lineTo(dots[j].x, dots[j].y);
+                    c.strokeStyle = `rgba(123, 104, 238, ${0.08 * (1 - dist / 120)})`;
+                    c.stroke();
+                }
+            }
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    init();
+    draw();
+    </script>
+</body>
 </html>
