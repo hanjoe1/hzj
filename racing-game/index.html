@@ -62,47 +62,71 @@
       display: none;
       position: fixed;
       bottom: 0; left: 0; right: 0;
+      top: 0;
       z-index: 50;
-      padding: 10px 16px 20px;
       pointer-events: none;
     }
-    #touch-controls .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #touch-controls button {
+
+    #joystick-zone {
       pointer-events: auto;
-      width: 70px; height: 70px;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: 2px solid rgba(255,159,67,0.7);
-      background: rgba(255,159,67,0.25);
-      color: #ff9f43;
-      font-size: 1.8rem;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,159,67,0.4);
+      touch-action: none;
+    }
+    #joystick-knob {
+      position: absolute;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(255,159,67,0.5);
+      border: 2px solid rgba(255,159,67,0.8);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: none;
+    }
+
+    #pedals {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    #pedals button {
+      pointer-events: auto;
+      width: 90px; height: 80px;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      font-weight: bold;
       cursor: pointer;
       touch-action: manipulation;
       -webkit-user-select: none;
       user-select: none;
+      border: 2px solid;
+      letter-spacing: 1px;
     }
-    #touch-controls button:active {
-      background: rgba(255,159,67,0.6);
-    }
-    #touch-controls .gas-btn {
-      width: 80px; height: 80px;
-      font-size: 2rem;
+    #t-gas {
       border-color: rgba(46,204,113,0.7);
-      background: rgba(46,204,113,0.25);
+      background: rgba(46,204,113,0.3);
       color: #2ecc71;
     }
-    #touch-controls .gas-btn:active {
+    #t-gas.active, #t-gas:active {
       background: rgba(46,204,113,0.6);
     }
-    #touch-controls .brake-btn {
+    #t-brake {
       border-color: rgba(231,76,60,0.7);
-      background: rgba(231,76,60,0.25);
+      background: rgba(231,76,60,0.3);
       color: #e74c3c;
     }
-    #touch-controls .brake-btn:active {
+    #t-brake.active, #t-brake:active {
       background: rgba(231,76,60,0.6);
     }
     #rotate-hint {
@@ -822,23 +846,76 @@
       document.getElementById('settings-overlay').classList.toggle('open');
     }
 
-    // Touch controls
+    // Joystick + Pedal touch controls
     function setupTouchControls() {
-      var btnLeft  = document.getElementById('t-left');
-      var btnRight = document.getElementById('t-right');
-      var btnGas   = document.getElementById('t-gas');
+      var zone = document.getElementById('joystick-zone');
+      var knob = document.getElementById('joystick-knob');
+      var btnGas = document.getElementById('t-gas');
       var btnBrake = document.getElementById('t-brake');
-      if (!btnLeft) return;
+      if (!zone) return;
 
-      function bind(btn, downFn, upFn) {
-        btn.addEventListener('touchstart', function(e) { e.preventDefault(); downFn(); }, {passive:false});
-        btn.addEventListener('touchend',   function(e) { e.preventDefault(); upFn(); },   {passive:false});
-        btn.addEventListener('touchcancel',function(e) { e.preventDefault(); upFn(); },   {passive:false});
+      var joystickActive = false;
+      var zoneRect, centerX, radius;
+
+      function updateZoneRect() {
+        zoneRect = zone.getBoundingClientRect();
+        centerX = zoneRect.left + zoneRect.width / 2;
+        radius = zoneRect.width / 2;
       }
-      bind(btnLeft,  function(){ keyLeft=true; },   function(){ keyLeft=false; });
-      bind(btnRight, function(){ keyRight=true; },  function(){ keyRight=false; });
-      bind(btnGas,   function(){ keyFaster=true; }, function(){ keyFaster=false; });
-      bind(btnBrake, function(){ keySlower=true; }, function(){ keySlower=false; });
+
+      zone.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        joystickActive = true;
+        updateZoneRect();
+        handleJoystick(e.touches[0].clientX);
+      }, {passive:false});
+
+      zone.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        if (!joystickActive) return;
+        handleJoystick(e.touches[0].clientX);
+      }, {passive:false});
+
+      zone.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        joystickActive = false;
+        keyLeft = false;
+        keyRight = false;
+        knob.style.left = '50%';
+      }, {passive:false});
+
+      zone.addEventListener('touchcancel', function(e) {
+        e.preventDefault();
+        joystickActive = false;
+        keyLeft = false;
+        keyRight = false;
+        knob.style.left = '50%';
+      }, {passive:false});
+
+      function handleJoystick(touchX) {
+        var dx = touchX - centerX;
+        var clamped = Math.max(-radius + 28, Math.min(radius - 28, dx));
+        var pct = 50 + (clamped / (radius - 28)) * 35;
+        knob.style.left = pct + '%';
+
+        var deadZone = 0.2;
+        var ratio = dx / radius;
+        if (ratio < -deadZone) {
+          keyLeft = true; keyRight = false;
+        } else if (ratio > deadZone) {
+          keyLeft = false; keyRight = true;
+        } else {
+          keyLeft = false; keyRight = false;
+        }
+      }
+
+      function bindPedal(btn, downFn, upFn) {
+        btn.addEventListener('touchstart', function(e) { e.preventDefault(); downFn(); btn.classList.add('active'); }, {passive:false});
+        btn.addEventListener('touchend',   function(e) { e.preventDefault(); upFn(); btn.classList.remove('active'); }, {passive:false});
+        btn.addEventListener('touchcancel',function(e) { e.preventDefault(); upFn(); btn.classList.remove('active'); }, {passive:false});
+      }
+      bindPedal(btnGas,   function(){ keyFaster=true; }, function(){ keyFaster=false; });
+      bindPedal(btnBrake, function(){ keySlower=true; }, function(){ keySlower=false; });
     }
 
     function fullResize() {
@@ -861,13 +938,12 @@
   </div>
 
   <div id="touch-controls">
-    <div class="row">
-      <button id="t-left">&#9664;</button>
-      <button id="t-gas" class="gas-btn">&#9650;</button>
-      <button id="t-right">&#9654;</button>
+    <div id="joystick-zone">
+      <div id="joystick-knob"></div>
     </div>
-    <div class="row" style="justify-content:center;margin-top:8px;">
-      <button id="t-brake" class="brake-btn">&#9660;</button>
+    <div id="pedals">
+      <button id="t-gas">油门</button>
+      <button id="t-brake">刹车</button>
     </div>
   </div>
 
