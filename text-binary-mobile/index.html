@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>文字二进制转换器</title>
+  <meta name="description" content="移动端文字与二进制互转工具">
+  <style>
+    :root {
+      --bg: #ece7e1;
+      --panel: #f6f2ee;
+      --surface: #e2d7cf;
+      --primary: #8f9a95;
+      --primary-strong: #6f7d77;
+      --accent: #b79f94;
+      --text: #4f4a46;
+      --text-soft: #7f7670;
+      --ok: #8aa394;
+      --danger: #b58b82;
+      --shadow: rgba(79, 74, 70, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app {
+      width: min(680px, 100%);
+      margin: 0 auto;
+      padding: calc(18px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      border: 1px solid rgba(79, 74, 70, 0.06);
+    }
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    .mode-tabs {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: #ded2c9;
+      border-radius: var(--radius-md);
+      padding: 6px;
+      border: 1px solid rgba(79, 74, 70, 0.12);
+      box-shadow: inset 0 -2px 0 rgba(79, 74, 70, 0.08);
+    }
+
+    .tab-btn {
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 10px 8px;
+      background: rgba(255, 255, 255, 0.35);
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: rgba(79, 74, 70, 0.14);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(79, 74, 70, 0.18);
+    }
+
+    .tab-btn:not(.active):active {
+      transform: translateY(1px);
+    }
+
+    .tab-btn:focus-visible {
+      outline: 2px solid rgba(111, 125, 119, 0.45);
+      outline-offset: 1px;
+    }
+
+    .panel-wrap {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .field-label {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 132px;
+      border: 1px solid rgba(79, 74, 70, 0.12);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      resize: vertical;
+      background: #faf8f6;
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      min-height: 40px;
+      flex: 1;
+    }
+
+    .btn.full {
+      width: 100%;
+      flex: none;
+      min-height: 46px;
+      font-size: 1rem;
+    }
+
+    .btn.secondary {
+      background: var(--accent);
+    }
+
+    .btn.ghost {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid rgba(79, 74, 70, 0.08);
+    }
+
+    .status {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      min-height: 1.3em;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.ok {
+      color: var(--ok);
+    }
+
+    @media (min-width: 720px) {
+      .app {
+        padding: 24px 20px 26px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <h1 class="title">程序员的一封情书</h1>
+
+      <div class="mode-tabs" role="tablist" aria-label="转换模式">
+        <button id="tabTextToBin" class="tab-btn active" role="tab" aria-selected="true">文字转二进制</button>
+        <button id="tabBinToText" class="tab-btn" role="tab" aria-selected="false">二进制转文字</button>
+      </div>
+
+      <div class="panel-wrap">
+        <div>
+          <label class="field-label" id="inputLabel" for="inputBox">输入文字</label>
+          <textarea id="inputBox" placeholder="例如：你好，world"></textarea>
+        </div>
+
+        <div>
+          <label class="field-label" id="outputLabel" for="outputBox">输出二进制</label>
+          <textarea id="outputBox" readonly placeholder="转换结果将显示在这里"></textarea>
+        </div>
+
+        <div class="row">
+          <button id="copyBtn" class="btn">复制结果</button>
+          <button id="clearBtn" class="btn ghost">清空</button>
+        </div>
+
+        <p id="status" class="status" aria-live="polite"></p>
+
+        <button id="convertBtn" class="btn full">转换</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabTextToBin = document.getElementById("tabTextToBin");
+    const tabBinToText = document.getElementById("tabBinToText");
+    const inputLabel = document.getElementById("inputLabel");
+    const outputLabel = document.getElementById("outputLabel");
+    const inputBox = document.getElementById("inputBox");
+    const outputBox = document.getElementById("outputBox");
+    const convertBtn = document.getElementById("convertBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const statusEl = document.getElementById("status");
+
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder("utf-8", { fatal: true });
+
+    let mode = "textToBin";
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      const isTextToBin = mode === "textToBin";
+
+      tabTextToBin.classList.toggle("active", isTextToBin);
+      tabBinToText.classList.toggle("active", !isTextToBin);
+      tabTextToBin.setAttribute("aria-selected", String(isTextToBin));
+      tabBinToText.setAttribute("aria-selected", String(!isTextToBin));
+
+      inputLabel.textContent = isTextToBin ? "输入文字" : "输入二进制";
+      outputLabel.textContent = isTextToBin ? "输出二进制" : "输出文字";
+      inputBox.placeholder = isTextToBin ? "例如：你好，world" : "例如：11100100 10111101 10100000";
+      outputBox.placeholder = isTextToBin ? "转换结果将显示在这里" : "转换结果将显示在这里";
+
+      setStatus("");
+    }
+
+    function textToBinary(text) {
+      const bytes = encoder.encode(text);
+      return Array.from(bytes, (byte) => byte.toString(2).padStart(8, "0")).join(" ");
+    }
+
+    function binaryToText(binary) {
+      const clean = binary.replace(/\s+/g, "");
+      if (!clean) {
+        return "";
+      }
+      if (/[^01]/.test(clean)) {
+        throw new Error("二进制内容只能包含 0 和 1");
+      }
+      if (clean.length % 8 !== 0) {
+        throw new Error("二进制位数必须是 8 的倍数");
+      }
+
+      const bytes = [];
+      for (let i = 0; i < clean.length; i += 8) {
+        bytes.push(parseInt(clean.slice(i, i + 8), 2));
+      }
+      return decoder.decode(new Uint8Array(bytes));
+    }
+
+    function setStatus(message, type = "") {
+      statusEl.textContent = message;
+      statusEl.className = "status";
+      if (type) {
+        statusEl.classList.add(type);
+      }
+    }
+
+    function convert() {
+      const input = inputBox.value;
+      if (!input.trim()) {
+        outputBox.value = "";
+        setStatus("请输入内容后再转换", "error");
+        return;
+      }
+
+      try {
+        outputBox.value = mode === "textToBin" ? textToBinary(input) : binaryToText(input);
+        setStatus("转换成功", "ok");
+      } catch (err) {
+        outputBox.value = "";
+        setStatus(err.message || "转换失败，请检查输入内容", "error");
+      }
+    }
+
+    async function copyOutput() {
+      const content = outputBox.value;
+      if (!content) {
+        setStatus("没有可复制的内容", "error");
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(content);
+        setStatus("复制成功", "ok");
+      } catch (err) {
+        setStatus("复制失败，请手动长按选择复制", "error");
+      }
+    }
+
+    function clearAll() {
+      inputBox.value = "";
+      outputBox.value = "";
+      setStatus("");
+    }
+
+    tabTextToBin.addEventListener("click", () => setMode("textToBin"));
+    tabBinToText.addEventListener("click", () => setMode("binToText"));
+    convertBtn.addEventListener("click", convert);
+    copyBtn.addEventListener("click", copyOutput);
+    clearBtn.addEventListener("click", clearAll);
+
+    setMode("textToBin");
+  </script>
+</body>
+</html>
