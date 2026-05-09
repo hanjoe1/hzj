@@ -1,0 +1,487 @@
+[
+  {
+    "id": "4906211",
+    "name": "To activate  BCA Syariah on InstaMoney",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ]
+    }
+  },
+  {
+    "id": "4907167",
+    "name": "test-kp-funding-regional-for atome cash ID",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ]
+    }
+  },
+  {
+    "id": "5343148",
+    "name": "[LZD ID] Callback coupon status",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Wenhao Fan 范雯皓 @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Wenhao Fan 范雯皓"
+      ]
+    }
+  },
+  {
+    "id": "5681734",
+    "name": "[Tech] Cash Daily Works",
+    "status": "In development",
+    "original_po": [],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Yuanming Chen 陈远明 @ Tech Works",
+      "Song Wang 王松 @ Tech Works"
+    ],
+    "roles": {
+      "Tech Owner": [
+        "Yuanming Chen 陈远明",
+        "Song Wang 王松"
+      ]
+    }
+  },
+  {
+    "id": "5769839",
+    "name": "[MKT] Tiktok RTA 2.0 bidding strategy add on",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Xueqi Wei 魏雪琦 (Yuki)",
+    "creator_email": "xueqi.wei@advancegroup.com",
+    "current_node_owners": [
+      "Mei Bai 白玫 @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ]
+    }
+  },
+  {
+    "id": "5769864",
+    "name": "[MKT] Google IOS ads ODM 2.0 optimization",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Xueqi Wei 魏雪琦 (Yuki)",
+    "creator_email": "xueqi.wei@advancegroup.com",
+    "current_node_owners": [
+      "Mei Bai 白玫 @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ]
+    }
+  },
+  {
+    "id": "5851602",
+    "name": "New Loan Purpose Value for GKAB's BIA loans",
+    "status": "In development",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Devina Thessalonica  @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "Tech Owner": [
+        "Devina Thessalonica "
+      ]
+    }
+  },
+  {
+    "id": "5884363",
+    "name": "[Card业务] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "original_po": [],
+    "valid_po": [],
+    "creator": "Bin Liu 刘彬 (Leo)",
+    "creator_email": "bin.liu.leo@advancegroup.com",
+    "current_node_owners": [],
+    "roles": {}
+  },
+  {
+    "id": "5884365",
+    "name": "[Cash业务] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Bin Liu 刘彬 (Leo)",
+    "creator_email": "bin.liu.leo@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ]
+    }
+  },
+  {
+    "id": "5947537",
+    "name": "[BOSS] Create/Edit Loan Products By Batch",
+    "status": "In development",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Devina Thessalonica  @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "Tech Owner": [
+        "Devina Thessalonica "
+      ]
+    }
+  },
+  {
+    "id": "6000448",
+    "name": "Add new model score in create credit & loan application API",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Wenhao Fan 范雯皓 @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Wenhao Fan 范雯皓"
+      ]
+    }
+  },
+  {
+    "id": "6229317",
+    "name": "[i-Cash] Send invoices/receipts to customers via email",
+    "status": "Pending PRD Design",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature confirm"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "Tech Owner": [
+        "Yuanming Chen 陈远明"
+      ]
+    }
+  },
+  {
+    "id": "6340687",
+    "name": "[LZD ID] Add loan dispute& rebalance function to kp boss",
+    "status": "Pending PRD Review",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ]
+    }
+  },
+  {
+    "id": "6525716",
+    "name": "[APP] Add bank holder name on bank account info page",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Mei Bai 白玫 @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "UI&UX": [
+        "Arwin Wangsa "
+      ]
+    }
+  },
+  {
+    "id": "6724467",
+    "name": "[App] 2025.05.09 Added: Email Notification For Buyback LOR Transfer",
+    "status": "Pending PRD Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Yuanming Chen 陈远明 @ PRD confirm"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "Tech Owner": [
+        "Yuanming Chen 陈远明"
+      ]
+    }
+  },
+  {
+    "id": "7465519",
+    "name": "[App] Loan Refinancing",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "UI&UX": [
+        "Xue Kei Lee "
+      ]
+    }
+  },
+  {
+    "id": "8563336",
+    "name": "[Cash] Credit Application Rejected Page: Add Marketing Feeds",
+    "status": "Pending PRD Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ]
+    }
+  },
+  {
+    "id": "10687864",
+    "name": "[Feature] Concurrent: Limit Upgrade - User Check Flow's Associated Concurrent Loan Eligibility Features ",
+    "status": "Pending Biz Review",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Jing Wu 吴静 (Zing) @ Feature review"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ]
+    }
+  },
+  {
+    "id": "10782223",
+    "name": "[OBOSS]Add application log",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Yuanming Chen 陈远明 @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Yuanming Chen 陈远明"
+      ]
+    }
+  },
+  {
+    "id": "11228044",
+    "name": "[TEST] Relation Feature Verification - Delete After Test",
+    "status": "Pending Biz Review",
+    "original_po": [],
+    "valid_po": [],
+    "creator": "Yan Xun 荀艳",
+    "creator_email": "yan.xun@advancegroup.com",
+    "current_node_owners": [],
+    "roles": {}
+  },
+  {
+    "id": "11291896",
+    "name": "[feature] first pre_score",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Wenhao Fan 范雯皓 @ Tech Works",
+      "Devina Thessalonica  @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Wenhao Fan 范雯皓",
+        "Devina Thessalonica "
+      ]
+    }
+  },
+  {
+    "id": "11293371",
+    "name": "[feature] get collection test tag",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Devina Thessalonica  @ Tech Works",
+      "Wenhao Fan 范雯皓 @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Devina Thessalonica ",
+        "Wenhao Fan 范雯皓"
+      ]
+    }
+  },
+  {
+    "id": "11488133",
+    "name": "[feature]seon v2 feature",
+    "status": "In development",
+    "original_po": [
+      "Mei Bai 白玫"
+    ],
+    "valid_po": [],
+    "creator": "Mei Bai 白玫",
+    "creator_email": "mei.bai@advancegroup.com",
+    "current_node_owners": [
+      "Wenhao Fan 范雯皓 @ Tech Works",
+      "Devina Thessalonica  @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Mei Bai 白玫"
+      ],
+      "Tech Owner": [
+        "Wenhao Fan 范雯皓",
+        "Devina Thessalonica "
+      ]
+    }
+  },
+  {
+    "id": "10834801",
+    "name": "[APP] Application Details Page Optimisation",
+    "status": "In development",
+    "original_po": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "valid_po": [],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com",
+    "current_node_owners": [
+      "Wenhao Fan 范雯皓 @ Tech Works"
+    ],
+    "roles": {
+      "Product Owner": [
+        "Jing Wu 吴静 (Zing)"
+      ],
+      "Tech Owner": [
+        "Wenhao Fan 范雯皓"
+      ],
+      "UI&UX": [
+        "Arwin Wangsa ",
+        "Muhammad Hilmi Ismail "
+      ]
+    }
+  }
+]

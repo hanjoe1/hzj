@@ -1,0 +1,272 @@
+[
+  {
+    "id": "5834817",
+    "name": "[TTS ID] OCR photo size",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ],
+    "creator": "Qili Fan 范琪莉",
+    "creator_email": "qili.fan@advancegroup.com"
+  },
+  {
+    "id": "6150858",
+    "name": "【KP OPS】Perform the operation of taking the old system offline",
+    "status": "In development",
+    "product_owners": [
+      "Huali Li 李花利"
+    ],
+    "creator": "Huali Li 李花利",
+    "creator_email": "huali.li@advancegroup.com"
+  },
+  {
+    "id": "6239931",
+    "name": "[Invoice2C]MY iCash&Card Stamp Duty auto download",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Cheng Chen 陈宬"
+    ],
+    "creator": "Cheng Chen 陈宬",
+    "creator_email": "cheng.chen.raphael@advancegroup.com"
+  },
+  {
+    "id": "6419932",
+    "name": "Mosaic & Recon：PH MayaBank Repayment Data Report",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ],
+    "creator": "Jin Shan 山巾",
+    "creator_email": "jin.shan@advancegroup.com"
+  },
+  {
+    "id": "6508084",
+    "name": "PH MayaBank x Atome cash channeling-Phase2 ",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Yuan Wang 王圆"
+    ],
+    "creator": "Yuan Wang 王圆",
+    "creator_email": "yuan.wang.isla@advancegroup.com"
+  },
+  {
+    "id": "6855560",
+    "name": "my  return kyc2.0  boss 展示本笔return kyc信息",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ],
+    "creator": "Melen Su Melen Su",
+    "creator_email": "melen.su@advancegroup.com"
+  },
+  {
+    "id": "6857939",
+    "name": "LLM_Auto_Reply_PRD",
+    "status": "In development",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ],
+    "creator": "Dongni Chen 陈东妮",
+    "creator_email": "dongni.chen@advancegroup.com"
+  },
+  {
+    "id": "7160468",
+    "name": "[ID] Support Funding Lender Automation",
+    "status": "In development",
+    "product_owners": [
+      "Karel Saputra (小虎)"
+    ],
+    "creator": "Karel Saputra (小虎)",
+    "creator_email": "karel.saputra@advancegroup.com"
+  },
+  {
+    "id": "7249943",
+    "name": "PH-Savings Account Application Optimisation",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ],
+    "creator": "Siyu Wu 吴思宇",
+    "creator_email": "siyu.wu@advancegroup.com"
+  },
+  {
+    "id": "7496641",
+    "name": "QR PH as repayment method",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shouwei Yan 严寿伟 (Whalen)"
+    ],
+    "creator": "Shouwei Yan 严寿伟 (Whalen)",
+    "creator_email": "shouwei.yan@advancegroup.com"
+  },
+  {
+    "id": "7512718",
+    "name": "Chatbot PH 2.2 read—— limit history&current bill status",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ],
+    "creator": "Dongni Chen 陈东妮",
+    "creator_email": "dongni.chen@advancegroup.com"
+  },
+  {
+    "id": "7964198",
+    "name": "Add dispute3.0 capability to card business",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Xue Sun 孙雪"
+    ],
+    "creator": "Xue Sun 孙雪",
+    "creator_email": "xue.sun@advancegroup.com"
+  },
+  {
+    "id": "8063009",
+    "name": "【chatbot】Ph2.4 PHQR transaction query",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ],
+    "creator": "Dongni Chen 陈东妮",
+    "creator_email": "dongni.chen@advancegroup.com"
+  },
+  {
+    "id": "8199920",
+    "name": "ph lazada  credit integration",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jie Li 李杰"
+    ],
+    "creator": "Jie Li 李杰",
+    "creator_email": "jie.li@advancegroup.com"
+  },
+  {
+    "id": "8339527",
+    "name": "PH Return KYC: Support ID Info",
+    "status": "Pending UI/UX Review",
+    "product_owners": [
+      "Irene Sun"
+    ],
+    "creator": "Irene Sun",
+    "creator_email": "yi.sun@advancegroup.com"
+  },
+  {
+    "id": "9602371",
+    "name": "APP Authorization Pop-up Logic Modification",
+    "status": "In development",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ],
+    "creator": "Siyu Wu 吴思宇",
+    "creator_email": "siyu.wu@advancegroup.com"
+  },
+  {
+    "id": "9606563",
+    "name": "C5120-PH/MY卡片切换视觉增强（新增Tab 导航）",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ],
+    "creator": "Jinyan Hong 洪金燕 (Gini)",
+    "creator_email": "jinyan.hong@advancegroup.com"
+  },
+  {
+    "id": "10694921",
+    "name": "MY BNPL Migration credit limit center【PRD】",
+    "status": "In development",
+    "product_owners": [
+      "Zilong Fu 符子龙"
+    ],
+    "creator": "Zilong Fu 符子龙",
+    "creator_email": "zilong.fu@advancegroup.com"
+  },
+  {
+    "id": "10825770",
+    "name": "LZD/TTS ID - LBA Notification Solution",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ],
+    "creator": "Qili Fan 范琪莉",
+    "creator_email": "qili.fan@advancegroup.com"
+  },
+  {
+    "id": "10834801",
+    "name": "[APP] Application Details Page Optimisation",
+    "status": "In development",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ],
+    "creator": "Jing Wu 吴静 (Zing)",
+    "creator_email": "wujing@advancegroup.com"
+  },
+  {
+    "id": "11079144",
+    "name": "20260427联调ID TTS order score v0.1.1",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ],
+    "creator": "Melen Su Melen Su",
+    "creator_email": "melen.su@advancegroup.com"
+  },
+  {
+    "id": "11243371",
+    "name": "Payment Code 和 VA ID FC APP调整模板",
+    "status": "In development",
+    "product_owners": [
+      "Indra Gunawan "
+    ],
+    "creator": "Indra Gunawan ",
+    "creator_email": "indra.gunawan@advancegroup.com"
+  },
+  {
+    "id": "11487555",
+    "name": "Exclude Rejected & Overdue user for Facebook",
+    "status": "In development",
+    "product_owners": [
+      "Wilson Wilson Wilson Wiratama"
+    ],
+    "creator": "Wilson Wilson Wilson Wiratama",
+    "creator_email": "wilson@advancegroup.com"
+  },
+  {
+    "id": "11772381",
+    "name": "Mosaic R2.4.4.1 PH Card - Chubb Insurance ",
+    "status": "In development",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ],
+    "creator": "Jin Shan 山巾",
+    "creator_email": "jin.shan@advancegroup.com"
+  },
+  {
+    "id": "11971616",
+    "name": "Integrate Infobip OTP in PH",
+    "status": "In development",
+    "product_owners": [
+      "Yan Dong 董琰 (Daisy)"
+    ],
+    "creator": "Yan Dong 董琰 (Daisy)",
+    "creator_email": "yan.dong@advancegroup.com"
+  },
+  {
+    "id": "11971688",
+    "name": "KPI payment_gateway payment_record & repayment_record business_line ETL modification",
+    "status": "In development",
+    "product_owners": [
+      "William Tjeng (荘祐铭） William"
+    ],
+    "creator": "William Tjeng (荘祐铭） William",
+    "creator_email": "william@advancegroup.com"
+  },
+  {
+    "id": "12132826",
+    "name": "PH Card Behavioural Score v0.6.1 New model",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ],
+    "creator": "Qingqing Huang 黄青青",
+    "creator_email": "qingqing.huang@advancegroup.com"
+  }
+]

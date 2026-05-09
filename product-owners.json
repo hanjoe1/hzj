@@ -1,0 +1,1467 @@
+[
+  {
+    "id": "4454498",
+    "name": "remove the capability to ' upload from gallery '",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Ruoyi Cai (Zoe)"
+    ]
+  },
+  {
+    "id": "4456990",
+    "name": "Phase 2:Funding Partner Disburse Settlement Automation and Revamp - SCB",
+    "status": "In development",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "4873067",
+    "name": "[PH&ID] Card Downgrade UI Optimization",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Quinna Jodanti (Quin)"
+    ]
+  },
+  {
+    "id": "4904855",
+    "name": "PH Card Limit Center",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Evans Han"
+    ]
+  },
+  {
+    "id": "4906211",
+    "name": "To activate  BCA Syariah on InstaMoney",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "4907167",
+    "name": "test-kp-funding-regional-for atome cash ID",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "4947240",
+    "name": "ID TTS资方合同调整",
+    "status": "In development",
+    "product_owners": [
+      "Guangming Geng 耿广明"
+    ]
+  },
+  {
+    "id": "5155005",
+    "name": "交易新增合同参数",
+    "status": "In development",
+    "product_owners": [
+      "Guangming Geng 耿广明"
+    ]
+  },
+  {
+    "id": "5174543",
+    "name": "ID-KPI: Add new province needs Lenders(SCB/BNI/Jago) provide new mapping list",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "5175556",
+    "name": "Credit limit change",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Suyu Zhao 赵塑宇"
+    ]
+  },
+  {
+    "id": "5325042",
+    "name": "MY add New category in MBOSS",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Zilong Fu 符子龙"
+    ]
+  },
+  {
+    "id": "5343148",
+    "name": "[LZD ID] Callback coupon status",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "5405123",
+    "name": "【Atome cash】OPS boss support email campaign",
+    "status": "In development",
+    "product_owners": [
+      "Huali Li 李花利"
+    ]
+  },
+  {
+    "id": "5410968",
+    "name": "MGM",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "HsiangMin Yu 游詳閔"
+    ]
+  },
+  {
+    "id": "5469121",
+    "name": "Apply Voucher on Loan Application",
+    "status": "In development",
+    "product_owners": [
+      "Tianze Lin 林天泽 (Stefanus)"
+    ]
+  },
+  {
+    "id": "5577202",
+    "name": "jago issue manually fixed",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Ruoyi Cai (Zoe)"
+    ]
+  },
+  {
+    "id": "5648608",
+    "name": "[KP] BNI VA creation fix",
+    "status": "In development",
+    "product_owners": [
+      "Karel Saputra (小虎)"
+    ]
+  },
+  {
+    "id": "5651227",
+    "name": "PRD Review",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "5651240",
+    "name": "Update Blank Template Fixed Link",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "5655779",
+    "name": "【交易】ID BNPL新增合同参数",
+    "status": "In development",
+    "product_owners": [
+      "Guangming Geng 耿广明"
+    ]
+  },
+  {
+    "id": "5681726",
+    "name": "[Tech] Ops Daily Works",
+    "status": "In development",
+    "product_owners": [
+      "Wenhao Fan 范雯皓"
+    ]
+  },
+  {
+    "id": "5681734",
+    "name": "[Tech] Cash Daily Works",
+    "status": "In development",
+    "product_owners": []
+  },
+  {
+    "id": "5695071",
+    "name": "Mosaic KPI&AFI monthly report update",
+    "status": "In development",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "5762881",
+    "name": "[KP Backend] enable sql mertrics for pintar projects",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Xiangmeng Chen 陈祥猛"
+    ]
+  },
+  {
+    "id": "5762895",
+    "name": "[PH CARD] 调整QR Ph用户标签事件",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "5769839",
+    "name": "[MKT] Tiktok RTA 2.0 bidding strategy add on",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "5769864",
+    "name": "[MKT] Google IOS ads ODM 2.0 optimization",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "5820418",
+    "name": "Spend & Save Coupon - Coupon & Bubble Display Logic",
+    "status": "In development",
+    "product_owners": [
+      "Tianze Lin 林天泽 (Stefanus)"
+    ]
+  },
+  {
+    "id": "5851602",
+    "name": "New Loan Purpose Value for GKAB's BIA loans",
+    "status": "In development",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "5884347",
+    "name": "[Cash交易] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jie Li 李杰"
+    ]
+  },
+  {
+    "id": "5884349",
+    "name": "[支付] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jiaxing Qiao 乔佳星"
+    ]
+  },
+  {
+    "id": "5884355",
+    "name": "[风控] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Huimin Zhou 周慧敏 (Jo)"
+    ]
+  },
+  {
+    "id": "5884363",
+    "name": "[Card业务] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "product_owners": []
+  },
+  {
+    "id": "5884365",
+    "name": "[Cash业务] Instapay延迟入账长期方案",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "5935145",
+    "name": "SCB2还款报告",
+    "status": "In development",
+    "product_owners": [
+      "Guangming Geng 耿广明"
+    ]
+  },
+  {
+    "id": "5936726",
+    "name": "Monthly Statement",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Zilong Fu 符子龙"
+    ]
+  },
+  {
+    "id": "5945028",
+    "name": "GoPay Biller Integaration Payment",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Karel Saputra (小虎)"
+    ]
+  },
+  {
+    "id": "5947537",
+    "name": "[BOSS] Create/Edit Loan Products By Batch",
+    "status": "In development",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "5993745",
+    "name": "Mosaic R2.3.1.1 Mosaic API to Netsuite - Interface Definition MY iCash",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "6000448",
+    "name": "Add new model score in create credit & loan application API",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "6020405",
+    "name": "【to data mid】RT Data requirement for fraud merchant warning",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Yinan Zhang 张艺楠"
+    ]
+  },
+  {
+    "id": "6026715",
+    "name": "TTS AFI & PH statement analysis adjustment to local timezone",
+    "status": "PRD Designing",
+    "product_owners": [
+      "William Tjeng (荘祐铭） William"
+    ]
+  },
+  {
+    "id": "6055367",
+    "name": "Atome Card争议解决方案[交易]",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Xue Sun 孙雪"
+    ]
+  },
+  {
+    "id": "6057149",
+    "name": "CX AI Chatbot Phase2: 2.1 Personal info 查询与读取-SG/MY Read v2",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Evans Han"
+    ]
+  },
+  {
+    "id": "6114597",
+    "name": "funding历史合同清除",
+    "status": "In development",
+    "product_owners": [
+      "Guangming Geng 耿广明"
+    ]
+  },
+  {
+    "id": "6150734",
+    "name": "Perform the operation of taking the old system offline",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Huali Li 李花利"
+    ]
+  },
+  {
+    "id": "6229317",
+    "name": "[i-Cash] Send invoices/receipts to customers via email",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "6241103",
+    "name": "CX AI Chatbot Phase2: 2.2 Personal info 查询与读取-SG/MY Read v3",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "6249396",
+    "name": "ph AAI CIC 接口设置个性化等待时长",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "6268166",
+    "name": "FR Audit PRD_PART2_2.4.X AccCost",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "6277297",
+    "name": "[Risk Feature Service] Atome Risk Feature Service ID-AFI 1.0",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shanshan Pei 裴姗姗"
+    ]
+  },
+  {
+    "id": "6277578",
+    "name": "WhatsApp New Vendor- WIZ integration",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Huali Li 李花利"
+    ]
+  },
+  {
+    "id": "6286992",
+    "name": "id tts 额度中心迁移——数据清洗",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "6340687",
+    "name": "[LZD ID] Add loan dispute& rebalance function to kp boss",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "6349444",
+    "name": "[LZD MY] License",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "6525716",
+    "name": "[APP] Add bank holder name on bank account info page",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "6639296",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Huali Li 李花利"
+    ]
+  },
+  {
+    "id": "6724467",
+    "name": "[App] 2025.05.09 Added: Email Notification For Buyback LOR Transfer",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "6765373",
+    "name": "ID-KPI GKAB batch LPA daily Vida e-sign ",
+    "status": "In development",
+    "product_owners": [
+      "Yuan Wang 王圆"
+    ]
+  },
+  {
+    "id": "6766256",
+    "name": "Atome PH Affiliate cashback",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Lei Guo 郭磊"
+    ]
+  },
+  {
+    "id": "6827258",
+    "name": "Dukcapil Monitoring Dashboard",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Nicsen Nicsen"
+    ]
+  },
+  {
+    "id": "6833677",
+    "name": "[TTS PH] Transaction credit boost",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "6836708",
+    "name": "Add EIR in Maya Bank LBA ",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Yuan Wang 王圆"
+    ]
+  },
+  {
+    "id": "6868190",
+    "name": "[Invoice2C] AFI Invoicing with funding cost change solution",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Cheng Chen 陈宬"
+    ]
+  },
+  {
+    "id": "6873773",
+    "name": "[KP] Add Bank Code Destination Allobank KP PG",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Karel Saputra (小虎)"
+    ]
+  },
+  {
+    "id": "7008422",
+    "name": "Mosaic R2.3.6.2 ID AFI VAT Saving Implementation ",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "7049285",
+    "name": "【WhatsApp】 Multi-Template Auto-Switching ",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Huali Li 李花利"
+    ]
+  },
+  {
+    "id": "7096400",
+    "name": "【chatbot】Optimization of the automated pre-processing process for unauthorized transaction work orders",
+    "status": "In development",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "7106419",
+    "name": "[Invoice2C]MY iCash invoicing config update",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Cheng Chen 陈宬"
+    ]
+  },
+  {
+    "id": "7140548",
+    "name": "Mosaic R2.3.6.5 ID KPI Cashflow daily detail with loan id",
+    "status": "In development",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "7155376",
+    "name": "ph Savings integration NETBANK webhook",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Xuemin Zhu 朱学敏"
+    ]
+  },
+  {
+    "id": "7264299",
+    "name": "Mosaic R2.3.7.2 ID-AFI Backday Write Off on June 30",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "7317400",
+    "name": "[LZD ID] KYC e-sign",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "7339627",
+    "name": "ID-KPI JAGO Due Diligence KYC Parameter",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Anthony Angkasa (洪继何)"
+    ]
+  },
+  {
+    "id": "7401710",
+    "name": "Apply hourly/daily trxn monitor to MY Card",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "7450168",
+    "name": "[Invoice2C] PH all projects legacy invoicing ",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Cheng Chen 陈宬"
+    ]
+  },
+  {
+    "id": "7465519",
+    "name": "[App] Loan Refinancing",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "7473735",
+    "name": "[TTS ID/PH] auto settlement ",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jiayin Cai (Christina)"
+    ]
+  },
+  {
+    "id": "7493570",
+    "name": "PH Atome day theme change",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "7627603",
+    "name": "PH_QR_AUTO REFUND & All Countries_ Refund Details",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shouwei Yan 严寿伟 (Whalen)"
+    ]
+  },
+  {
+    "id": "7767801",
+    "name": "Ph Chatbot 2.3-Bill query",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "7897971",
+    "name": "[TTS ID/PH] Combined payment - phase 2",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "7938529",
+    "name": "【chatbot】SG/MY change order count",
+    "status": "In development",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "7944512",
+    "name": "PH Atome Cash 新增展期流程及6个feature",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "7956344",
+    "name": "MY Card - P30 Add Fees Cap",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "7956845",
+    "name": "C5070-Exemption & Full Refund for Dispute Ticket",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ]
+  },
+  {
+    "id": "8017721",
+    "name": "C5073_PH_ID_MY_Replacement card fee",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Ruoyi Cai (Zoe)"
+    ]
+  },
+  {
+    "id": "8081075",
+    "name": "C5074 - MY Card KYC Address Form Optimization",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "8101258",
+    "name": "C5075-PH Card 安卓Applist 采集清单变更",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Shanshan Kang 康珊珊"
+    ]
+  },
+  {
+    "id": "8149846",
+    "name": "ph lazada额度中心迁移",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "8166598",
+    "name": "PH两个cash项目24个feature逻辑修改 lzd改查额度中心",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "8194419",
+    "name": "Biz Credit Center Integration",
+    "status": "In development",
+    "product_owners": [
+      "Qili Fan 范琪莉"
+    ]
+  },
+  {
+    "id": "8199677",
+    "name": "Mosaic R2.3.9.5 SG/MY BNPL Cross Border - Multi Currency",
+    "status": "In development",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "8220775",
+    "name": "C5079 - MY Card Rebalance ",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "8334721",
+    "name": "C5080 - PH&MY Card KYC Address Collection Optimization",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "8539302",
+    "name": "C5088-MY/ID/PH账单日出账调整",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "8563336",
+    "name": "[Cash] Credit Application Rejected Page: Add Marketing Feeds",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "8649590",
+    "name": "【MY】Modify user group of the button on the merchant details page",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "8733495",
+    "name": "C5090：PH/ID/MY 用户自定义交易限额限时//User-defined transaction limit time limit",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ]
+  },
+  {
+    "id": "8791557",
+    "name": "[Funding RT Data]Atome Funding RT Data Service V1.2",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shanshan Pei 裴姗姗"
+    ]
+  },
+  {
+    "id": "8953881",
+    "name": "【MY】Adjust button display priority on the merchant page",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "9197768",
+    "name": "C5111-MY Card 3DS Phase2",
+    "status": "In development",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "9380001",
+    "name": "Card Trading&Core Repayment Details MQ Optimization",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shouwei Yan 严寿伟 (Whalen)"
+    ]
+  },
+  {
+    "id": "9606893",
+    "name": "【MY】APP theme change to CNY theme",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "9699469",
+    "name": "MY-CARD划扣调整",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Yongyi Zhang 张永义"
+    ]
+  },
+  {
+    "id": "9831229",
+    "name": "MY 3DS首页入口",
+    "status": "In development",
+    "product_owners": [
+      "Xiaojia Qiu (小虾)"
+    ]
+  },
+  {
+    "id": "10171329",
+    "name": "[Settlement]MY SCB payout Template change for TTS&Agoda",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Cheng Chen 陈宬"
+    ]
+  },
+  {
+    "id": "10650960",
+    "name": "R1.6.3 FassPay (FP) - MY card ETL switch to card_transaction_log data source ETL",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "William Tjeng (荘祐铭） William"
+    ]
+  },
+  {
+    "id": "10661431",
+    "name": "C6021 - MY Card DuitNow (QR) Integration 1.0",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Will Xiao"
+    ]
+  },
+  {
+    "id": "10687864",
+    "name": "[Feature] Concurrent: Limit Upgrade - User Check Flow's Associated Concurrent Loan Eligibility Features ",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Jing Wu 吴静 (Zing)"
+    ]
+  },
+  {
+    "id": "10689033",
+    "name": "【MY】IOS update applist ",
+    "status": "In development",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "10720819",
+    "name": "ID tts 3.9 大促名单更新",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "10728572",
+    "name": "*【Atome CS bot】change PH/MY card logic of getting limit history",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "10730582",
+    "name": "【ID】MSI Official Website SEO Strategy Optimization-01",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "10730649",
+    "name": "【ID】MSI Official Website SEO Strategy Optimization-02",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "10730690",
+    "name": "【ID】MSI Official Website SEO Strategy Optimization-03",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "10765015",
+    "name": "OKP优化（FC 上 传文件撤销分案/IA 提前入催）",
+    "status": "In development",
+    "product_owners": [
+      "Yongyi Zhang 张永义"
+    ]
+  },
+  {
+    "id": "10775771",
+    "name": "【WhatsApp】Add a new vendor - Wavecell",
+    "status": "In development",
+    "product_owners": [
+      "Shuang Zhou 周爽 (Jo)"
+    ]
+  },
+  {
+    "id": "10776368",
+    "name": "Mosaic R2.4.3.2 ID-KPI/AFI Monthly/Weekly Report Update",
+    "status": "In development",
+    "product_owners": [
+      "Jin Shan 山巾"
+    ]
+  },
+  {
+    "id": "10782223",
+    "name": "[OBOSS]Add application log",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "10860710",
+    "name": "C6012_ID_BMI Card_Auto Installment",
+    "status": "In development",
+    "product_owners": [
+      "Ruoyi Cai (Zoe)"
+    ]
+  },
+  {
+    "id": "10879729",
+    "name": "MY AP 迁移额度中心",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "10902169",
+    "name": "MY Duitnow - Public Scan Process",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Xiaojia Qiu (小虾)"
+    ]
+  },
+  {
+    "id": "10909269",
+    "name": "白标业务白名单feature增加实效时间校验20260309",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "10995428",
+    "name": "ID LZD order score v0.4.1 + feature 1 cnt ",
+    "status": "In development",
+    "product_owners": [
+      "Indra Gunawan "
+    ]
+  },
+  {
+    "id": "10999659",
+    "name": "MY BNPL Credit Integration",
+    "status": "In development",
+    "product_owners": [
+      "Jie Li 李杰"
+    ]
+  },
+  {
+    "id": "11004325",
+    "name": "MY homepage BNPL widget scene segmentation【PRD】",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Zilong Fu 符子龙"
+    ]
+  },
+  {
+    "id": "11051891",
+    "name": "MY Card QR支付对接",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11077803",
+    "name": "MY APaylater User Credit Risk Offline Score v0.2.0",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "11079278",
+    "name": "20260409联调ID TTS FDC score v0.1.0 new model",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "11114673",
+    "name": "ID UIC Address Library Migration from Name to CODE",
+    "status": "In development",
+    "product_owners": [
+      "Irene Sun"
+    ]
+  },
+  {
+    "id": "11119942",
+    "name": "两个国家 tts 180内最大还款金额feature",
+    "status": "In development",
+    "product_owners": [
+      "Melen Su Melen Su"
+    ]
+  },
+  {
+    "id": "11125124",
+    "name": "MY Cash 49×2个feature ctos",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "11202193",
+    "name": "AFI APP Homepage Phase 2",
+    "status": "In development",
+    "product_owners": [
+      "Nicsen Nicsen"
+    ]
+  },
+  {
+    "id": "11228044",
+    "name": "[TEST] Relation Feature Verification - Delete After Test",
+    "status": "Pending Biz Review",
+    "product_owners": []
+  },
+  {
+    "id": "11239632",
+    "name": "User Understanding",
+    "status": "In development",
+    "product_owners": [
+      "Ika Febriana Habiba Ika"
+    ]
+  },
+  {
+    "id": "11239635",
+    "name": "Merge LBA + RIPLAY",
+    "status": "In development",
+    "product_owners": [
+      "Ika Febriana Habiba Ika"
+    ]
+  },
+  {
+    "id": "11245229",
+    "name": "C6025-BMI 交易通知模板 & PH/ID/MY 通知跳转优化",
+    "status": "In development",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ]
+  },
+  {
+    "id": "11291896",
+    "name": "[feature] first pre_score",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "11293371",
+    "name": "[feature] get collection test tag",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "11331649",
+    "name": "Global Phone Detection API Integration SEON V2",
+    "status": "In development",
+    "product_owners": [
+      "Indra Gunawan "
+    ]
+  },
+  {
+    "id": "11388608",
+    "name": "PH savings+change mobile number",
+    "status": "In development",
+    "product_owners": [
+      "Bing Han 韩冰"
+    ]
+  },
+  {
+    "id": "11461979",
+    "name": "【Mkt bot】v1.3-spending insights",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "11464925",
+    "name": "PH CARD Zeus  字段引入",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Yongyi Zhang 张永义"
+    ]
+  },
+  {
+    "id": "11485486",
+    "name": "OKP 优化（号码/邮箱停催/IA停催信息同步分案预配置）",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Theseus Ma (马上才)"
+    ]
+  },
+  {
+    "id": "11486837",
+    "name": "cashback调用IVS&风控【补充需求】",
+    "status": "In development",
+    "product_owners": [
+      "Shengyu Zhang 张晟瑜 (Ocean)"
+    ]
+  },
+  {
+    "id": "11487395",
+    "name": "Atome wiz waba  API 对接",
+    "status": "In development",
+    "product_owners": [
+      "Theseus Ma (马上才)"
+    ]
+  },
+  {
+    "id": "11488133",
+    "name": "[feature]seon v2 feature",
+    "status": "In development",
+    "product_owners": [
+      "Mei Bai 白玫"
+    ]
+  },
+  {
+    "id": "11488523",
+    "name": "PH CASH 逾期分期项目",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Yongyi Zhang 张永义"
+    ]
+  },
+  {
+    "id": "11509956",
+    "name": "Mosaic R2.4.4.3 PH Maya & CIMB loan channelling Phase 2",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Tong Fu 付童"
+    ]
+  },
+  {
+    "id": "11510305",
+    "name": "Exclude Rejected & Overdue user for TikTok",
+    "status": "In development",
+    "product_owners": [
+      "Wilson Wilson Wilson Wiratama"
+    ]
+  },
+  {
+    "id": "11530623",
+    "name": "【PH CARD】ECpay channel",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Long Yang 杨龙"
+    ]
+  },
+  {
+    "id": "11551673",
+    "name": "PH CARD 最近一次降额渠道 优化(1) 20260414",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11649837",
+    "name": "Anti-Fraud API - CASHBACK_FUND_OUT feature p2",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11655352",
+    "name": "PH/ID Atome Cash额度变更用户通知",
+    "status": "In development",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "11655695",
+    "name": "PH/ID Atome Cash-Management增加 Atome Town",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "11663145",
+    "name": "PH CARD mgm新数据源feature(22) 20260414 p2",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11665874",
+    "name": "Due date logic adjustment to",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Wilson Wilson Wilson Wiratama"
+    ]
+  },
+  {
+    "id": "11667870",
+    "name": "C6030-Pop Up  Location 增加",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ]
+  },
+  {
+    "id": "11669100",
+    "name": "AUB fully repaid report optimization",
+    "status": "Pending Biz Review",
+    "product_owners": [
+      "Hancheng Zhang 张翰成"
+    ]
+  },
+  {
+    "id": "11670297",
+    "name": "[ProdFIn] Sale and Leaseback",
+    "status": "In development",
+    "product_owners": [
+      "Nicsen Nicsen"
+    ]
+  },
+  {
+    "id": "11683173",
+    "name": "Added Card, Non-Card Repayment and Waiver Summary MQ",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Shouwei Yan 严寿伟 (Whalen)"
+    ]
+  },
+  {
+    "id": "11688172",
+    "name": "Oboss-viber&WA消息模板支持复制能力",
+    "status": "In development",
+    "product_owners": [
+      "Xiaoyu Huang 黄晓宇"
+    ]
+  },
+  {
+    "id": "11688344",
+    "name": "【PH】Atome day theme changed 4.22-4.24",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Siyu Wu 吴思宇"
+    ]
+  },
+  {
+    "id": "11772130",
+    "name": "Temporary Credit Limit Optimization: Add Expiry After X Days",
+    "status": "In development",
+    "product_owners": [
+      "Shuang Zhou 周爽 (Jo)"
+    ]
+  },
+  {
+    "id": "11774040",
+    "name": "RIPLAY Personal new format - KP",
+    "status": "In development",
+    "product_owners": [
+      "Wilson Wilson Wilson Wiratama"
+    ]
+  },
+  {
+    "id": "11817233",
+    "name": "PH官网改版",
+    "status": "Pending UI/UX Review",
+    "product_owners": [
+      "Xiaoyu Huang 黄晓宇"
+    ]
+  },
+  {
+    "id": "11822738",
+    "name": "API: Query UID's active bills info",
+    "status": "In development",
+    "product_owners": [
+      "Ika Febriana Habiba Ika"
+    ]
+  },
+  {
+    "id": "11822905",
+    "name": "RIPLAY General new format - KP",
+    "status": "In development",
+    "product_owners": [
+      "Wilson Wilson Wilson Wiratama"
+    ]
+  },
+  {
+    "id": "11894773",
+    "name": "PH Card ECPAY",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11895010",
+    "name": "PBOSS风控中台需求10.4",
+    "status": "In development",
+    "product_owners": [
+      "Chunyi Zhao 赵纯艺"
+    ]
+  },
+  {
+    "id": "11896360",
+    "name": "EV Financing Onboarding Flow ",
+    "status": "In development",
+    "product_owners": [
+      "Cathleen Lauretta "
+    ]
+  },
+  {
+    "id": "11918192",
+    "name": "ID BMI Card 用户自动分期",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11947224",
+    "name": "PH Cash(In App)-逾期分期",
+    "status": "PRD Designing",
+    "product_owners": [
+      "Juannuan Huang"
+    ]
+  },
+  {
+    "id": "11987403",
+    "name": "PH CARD mgm feature 迭代(3) 20260423",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  },
+  {
+    "id": "11992526",
+    "name": "【Mkt bot】v1.4-Emotional Settings + Strategy Recommendations",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Dongni Chen 陈东妮"
+    ]
+  },
+  {
+    "id": "12000216",
+    "name": "OKP wiz waba  API 对接",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Theseus Ma (马上才)"
+    ]
+  },
+  {
+    "id": "12001808",
+    "name": "Re-linking when user status = Reset",
+    "status": "In development",
+    "product_owners": [
+      "Ika Febriana Habiba Ika"
+    ]
+  },
+  {
+    "id": "12013706",
+    "name": "Atome引导用户评分-新增card&cash引导节点",
+    "status": "To be dev scheduled",
+    "product_owners": [
+      "Xiaoyu Huang 黄晓宇"
+    ]
+  },
+  {
+    "id": "12033772",
+    "name": "CARD项目增收换卡费",
+    "status": "Pending PRD Design",
+    "product_owners": [
+      "Yongyi Zhang 张永义"
+    ]
+  },
+  {
+    "id": "12044890",
+    "name": "Contract System [backlog]-Funding Wholesale Report Support",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Bin Zhang 张彬"
+    ]
+  },
+  {
+    "id": "12055715",
+    "name": "Cash-PH Pboss fee waive",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Jinyan Hong 洪金燕 (Gini)"
+    ]
+  },
+  {
+    "id": "12056204",
+    "name": "PH 开票迁移 PHASE II",
+    "status": "Pending PRD Review",
+    "product_owners": [
+      "Linyao Xia 夏林瑶"
+    ]
+  },
+  {
+    "id": "12135251",
+    "name": "PH Card Credit Score v0.7.3 New model",
+    "status": "In development",
+    "product_owners": [
+      "Qingqing Huang 黄青青"
+    ]
+  }
+]
