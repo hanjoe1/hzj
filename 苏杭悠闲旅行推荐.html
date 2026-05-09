@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苏杭悠闲旅行推荐 · 3-4天</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root { --bg: #faf8f5; --card: #fff; --accent: #2d5016; --accent2: #8b6914; --text: #333; --muted: #777; --border: #e8e2d8; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Noto Serif SC', serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  
+  .hero { text-align: center; padding: 60px 20px 40px; }
+  .hero h1 { font-size: 2.4em; color: var(--accent); margin-bottom: 8px; letter-spacing: 4px; }
+  .hero .sub { font-size: 1.1em; color: var(--muted); font-style: italic; }
+  .divider { text-align: center; margin: 30px 0; color: var(--border); font-size: 1.4em; letter-spacing: 12px; }
+  
+  .city-header { background: var(--accent); color: #fff; padding: 30px; border-radius: 12px; margin: 40px 0 30px; text-align: center; }
+  .city-header h2 { font-size: 2em; letter-spacing: 6px; margin-bottom: 4px; }
+  .city-header .tagline { font-size: 0.95em; opacity: 0.85; }
+  .city-header.hangzhou { background: #1a4a2e; }
+  
+  .section { margin: 35px 0; }
+  .section h3 { font-size: 1.4em; color: var(--accent); border-left: 4px solid var(--accent2); padding-left: 14px; margin-bottom: 18px; }
+  
+  .place { background: var(--card); border-radius: 12px; overflow: hidden; margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+  .place img { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .place .info { padding: 20px 24px; }
+  .place .info h4 { font-size: 1.25em; color: var(--accent); margin-bottom: 6px; }
+  .place .info .tags { margin-bottom: 10px; }
+  .place .info .tag { display: inline-block; background: #f0ebe3; color: var(--accent2); padding: 2px 10px; border-radius: 20px; font-size: 0.8em; margin-right: 6px; margin-bottom: 4px; }
+  .place .info .tag.updated { background: #e8f5e9; color: #2e7d32; }
+  .place .info p { color: #555; font-size: 0.95em; }
+  .place .info .tip { background: #f7f4ef; border-left: 3px solid var(--accent2); padding: 10px 14px; margin-top: 12px; font-size: 0.88em; color: #666; border-radius: 0 6px 6px 0; }
+  
+  .hotel { background: var(--card); border-radius: 12px; overflow: hidden; margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); display: flex; }
+  .hotel img { width: 260px; min-height: 200px; object-fit: cover; flex-shrink: 0; }
+  .hotel .info { padding: 20px; flex: 1; }
+  .hotel .info h4 { font-size: 1.15em; color: var(--accent); margin-bottom: 4px; }
+  .hotel .info .price { color: var(--accent2); font-weight: bold; font-size: 0.95em; margin-bottom: 8px; }
+  .hotel .info .loc { color: var(--muted); font-size: 0.85em; margin-bottom: 8px; }
+  .hotel .info p { color: #555; font-size: 0.9em; }
+  
+  .food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .food-item { background: var(--card); border-radius: 10px; padding: 18px; border: 1px solid var(--border); }
+  .food-item h5 { color: var(--accent2); font-size: 1em; margin-bottom: 6px; }
+  .food-item p { color: #555; font-size: 0.9em; }
+  
+  .info-box { background: #f0ebe3; border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+  .info-box h4 { color: var(--accent); margin-bottom: 8px; }
+  .info-box p { font-size: 0.92em; color: #555; }
+  
+  .rhythm { background: linear-gradient(135deg, #f7f4ef 0%, #ede8df 100%); border-radius: 12px; padding: 28px; margin: 30px 0; }
+  .rhythm h3 { border: none; padding: 0; margin-bottom: 16px; text-align: center; }
+  .day { margin: 14px 0; padding: 14px 18px; background: var(--card); border-radius: 8px; border-left: 4px solid var(--accent2); }
+  .day strong { color: var(--accent); }
+  
+  .map-container { border-radius: 12px; overflow: hidden; margin: 20px 0; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .map-container .map { height: 420px; width: 100%; }
+  .map-container .map-caption { background: var(--card); padding: 12px 18px; font-size: 0.88em; color: var(--muted); text-align: center; border-top: 1px solid var(--border); }
+  
+  .transport-section { background: var(--card); border-radius: 12px; padding: 28px; margin: 30px 0; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .transport-section h3 { border: none; padding: 0; margin-bottom: 20px; text-align: center; font-size: 1.5em; color: var(--accent); }
+  .transport-route { background: #f7f4ef; border-radius: 10px; padding: 20px; margin: 16px 0; }
+  .transport-route h4 { color: var(--accent); margin-bottom: 10px; font-size: 1.1em; }
+  .transport-route .route-detail { display: flex; align-items: center; gap: 16px; margin: 10px 0; flex-wrap: wrap; }
+  .transport-route .station { background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: bold; white-space: nowrap; }
+  .transport-route .arrow { color: var(--accent2); font-size: 1.3em; font-weight: bold; }
+  .transport-route .duration { background: var(--accent2); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; white-space: nowrap; }
+  .transport-route p { color: #555; font-size: 0.9em; margin-top: 8px; }
+  .transport-route ul { margin: 8px 0 0 20px; color: #555; font-size: 0.9em; }
+  .transport-route ul li { margin: 4px 0; }
+  
+  .review-section { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-radius: 12px; padding: 28px; margin: 30px 0; }
+  .review-section h3 { border: none; padding: 0; margin-bottom: 20px; text-align: center; font-size: 1.4em; color: var(--accent); }
+  .review-role { margin: 16px 0; padding: 16px 20px; background: var(--card); border-radius: 10px; border-left: 4px solid var(--accent); }
+  .review-role h4 { color: var(--accent2); margin-bottom: 8px; }
+  .review-role ul { margin-left: 20px; color: #555; font-size: 0.9em; }
+  .review-role ul li { margin: 6px 0; }
+  .review-role ul li strong { color: var(--accent); }
+  
+  .footer { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.85em; }
+  
+  @media (max-width: 700px) {
+    .hotel { flex-direction: column; }
+    .hotel img { width: 100%; height: 200px; }
+    .food-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8em; }
+    .place img { height: 200px; }
+    .map-container .map { height: 320px; }
+    .transport-route .route-detail { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>苏 杭 悠 闲 记</h1>
+  <p class="sub">3-4 天 · 不赶路的江南之旅</p>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- ==================== 苏 州 ==================== -->
+<div class="city-header">
+  <h2>苏 州</h2>
+  <p class="tagline">「姑苏城外寒山寺，夜半钟声到客船」— 建议停留 1.5 - 2 天</p>
+</div>
+
+<!-- 苏州地图 -->
+<div class="map-container">
+  <div class="map" id="map-suzhou"></div>
+  <div class="map-caption">苏州景点分布 · 点击标记查看详情 · 所有推荐地点步行/公交均可到达</div>
+</div>
+
+<!-- 住宿 -->
+<div class="section">
+  <h3>住哪里 — 平江路片区</h3>
+  <p style="margin-bottom:16px; color:#555;">首选老城平江路一带。出门就是粉墙黛瓦的水巷，步行可达拙政园、苏州博物馆、狮子林，住在景里面。</p>
+  
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Canal_dans_le_centre_ancien_de_Suzhou_(16999191119).jpg?width=520" 
+         alt="平江路水巷" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23e8e2d8%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2218%22>平江路水巷</text></svg>'">
+    <div class="info">
+      <h4>书香府邸 · 平江府</h4>
+      <p class="price">800 - 1,200 / 晚</p>
+      <p class="loc">白塔东路60号 · 自带百年北半园</p>
+      <p>苏州最有名的园林酒店。侧门直通平江路，推门就是水巷人家。房间是苏式风格，有禅意茶台和木雕屏风。步行 5 分钟到拙政园、苏州博物馆。</p>
+    </div>
+  </div>
+  
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gusu,_Suzhou,_Jiangsu,_China_-_panoramio_(260).jpg?width=520" 
+         alt="平江路街景" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23e8e2d8%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2218%22>颐和松茂居</text></svg>'">
+    <div class="info">
+      <h4>颐和松茂居</h4>
+      <p class="price">1,500+ / 晚</p>
+      <p class="loc">平江路菉葭巷56号 · 晚清潘祖荫夫人故居改造</p>
+      <p>乾隆十年的老宅，27 间客房融合明清家具与现代舒适度。有户外泳池、健身房。餐厅「万国春」获黑珍珠一钻。提供围炉煮茶、汉服体验。</p>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/苏州平江路.jpg?width=520" 
+         alt="平江路" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23e8e2d8%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2218%22>姑苏小院</text></svg>'">
+    <div class="info">
+      <h4>姑苏小院 · 云林小筑</h4>
+      <p class="price">500 - 800 / 晚</p>
+      <p class="loc">悬桥巷 · 顾家花园10号</p>
+      <p>江南读书人家顾家老宅改造，管家服务贴心，科勒卫浴、落地窗、绿植庭院。性价比之选，有设计感但不浮夸。适合想住进老巷子又不将就的人。</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>周边什么都有</h4>
+    <p>酒店步行范围内：<strong>拙政园</strong>（5分钟）、<strong>苏州博物馆</strong>（8分钟）、<strong>狮子林</strong>（10分钟）、<strong>平江路主街</strong>（出门即是）。<br>
+    <strong>地铁 6 号线「拙政园苏博」站</strong>（2024年新开）步行 5-10 分钟；地铁 1 号线临顿路站 / 相门站步行 10-15 分钟。</p>
+  </div>
+</div>
+
+<!-- 景点 -->
+<div class="section">
+  <h3>去哪里玩</h3>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Garden_of_Cultivation.jpg?width=900" 
+         alt="艺圃" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>艺圃 — 本地人的秘密花园</h4>
+      <div class="tags">
+        <span class="tag">门票 10 元</span>
+        <span class="tag">游客极少</span>
+        <span class="tag">明代园林</span>
+      </div>
+      <p>苏州最小的世界遗产园林（仅 5 亩），始建于 1541 年。水池居中，北面是博雅堂、延光阁，南面叠石假山。和拙政园的热闹不同，这里常常只有你和几个本地老人。开放时间 7:30-17:00（16:30 停止入场）。</p>
+      <div class="tip">
+        <strong>正确打开方式：</strong>在延光阁水榭要一壶碧螺春（15-25 元），对着水池坐一上午。这才是苏州人过日子的节奏。地址：阊门文衙弄 5 号。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/苏州艺圃园林区2019.jpg?width=900" 
+         alt="艺圃园林" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>拙政园 — 如果只去一个园林</h4>
+      <div class="tags">
+        <span class="tag">淡季 70 元 / 旺季 80-90 元</span>
+        <span class="tag">世界遗产</span>
+        <span class="tag">苏州最大</span>
+      </div>
+      <p>中国四大名园之首，占地 78 亩，以水为中心，山水萦绕、厅榭精美。中园的「远香堂」和「小飞虹」是经典取景点。虽然人多，但体量大，能找到安静角落。</p>
+      <div class="tip">
+        <strong>避开人潮：</strong>一早开门（7:30）就进，先走中园。9 点后旅行团涌入。西园最安静。<br>
+        <strong>购票：</strong>建议提前在官网 szzzy.cn 预约。淡季（1-3月、6月、11-12月）70元，旺季（4-5月、7-10月）80-90元。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gusu,_Suzhou,_Jiangsu,_China_-_panoramio_(148).jpg?width=900" 
+         alt="平江路" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>平江路支巷 — 真正的苏州藏在巷子里</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">散步闲逛</span>
+        <span class="tag">独立咖啡馆</span>
+      </div>
+      <p>平江路主街已经商业化了，但拐进<strong>丁香巷、大儒巷、钮家巷</strong>，立刻安静下来。青石板路、爬墙的藤蔓、半掩的木门——这才是活着的苏州。巷子里藏着独立咖啡馆和小书店。</p>
+      <div class="tip">
+        <strong>推荐：</strong>桃花坞历史文化片区也在附近，有版画、苏绣、缂丝工作室，手艺人在里头干活，不是表演。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cultivation_garden_bathing_gull_pond.jpg?width=900" 
+         alt="西园寺" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>西园寺 — 5 块钱的快乐</h4>
+      <div class="tags">
+        <span class="tag">门票 5 元</span>
+        <span class="tag">可以撸猫</span>
+        <span class="tag">素面 10-15 元</span>
+      </div>
+      <p>本地人更爱去的寺庙（比寒山寺有意思多了）。五百罗汉堂可以「数罗汉」，放生池有明代斑鳖和百年老龟。寺里到处溜达着近百只猫，性格松弛不怕人。素面 10-15 元一碗（观音面、吉祥面），天王殿左侧 8:00-15:00 供应。开放 7:30-17:00。</p>
+      <div class="tip">
+        <strong>小贴士：</strong>可自备猫粮或猫条投喂。湖心亭茶室可免费抄经。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gusu,_Suzhou,_Jiangsu,_China_-_panoramio_(161).jpg?width=900"
+         alt="葑门横街" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>葑门横街 — 苏州最有烟火气的地方</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">本地菜场</span>
+        <span class="tag">觅食天堂</span>
+      </div>
+      <p>不是景点，是苏州人真正买菜的老菜场。现炸爆鱼、刚出炉蟹壳黄烧饼、应季的水八仙（茭白、莲藕、菱角……）。大爷大妈讨价还价，摊主吴语吆喝，这才是活生生的姑苏。</p>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Suzhou_Museum_04.jpg?width=900"
+         alt="苏州博物馆" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>苏州博物馆 — 贝聿铭的收山之作</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">需提前 3-7 天预约</span>
+        <span class="tag">建筑本身就是展品</span>
+      </div>
+      <p>贝聿铭为家乡设计的博物馆，把苏州园林的意境用现代手法重新演绎。白墙灰瓦几何切割、片石假山借景忠王府——光是建筑本身就值得专程来。馆藏以吴地文物为主。</p>
+      <div class="tip">
+        <strong>注意：</strong>必须提前在小程序预约，现场不售票。建议预约上午场，光线最好。地铁 6 号线「拙政园苏博」站 2 号口出站步行 5 分钟。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 美食 -->
+<div class="section">
+  <h3>吃什么</h3>
+  <div class="food-grid">
+    <div class="food-item">
+      <h5>早面 · 苏州人的信仰</h5>
+      <p><strong>同得兴</strong>的枫镇大肉面（白汤酒酿香）、<strong>裕兴记</strong>三虾面（6-7月限定）。浇头自选，汤底讲究，苏州人一天从一碗面开始。</p>
+    </div>
+    <div class="food-item">
+      <h5>小吃 · 走街串巷吃</h5>
+      <p><strong>哑巴生煎</strong>（皮薄汁多，临顿路温家岸12号，6:00-19:30 营业，米其林推荐）。排队长请趁早去，也可去苏安新村总店避开人群。蟹壳黄烧饼咸甜两种，在葑门横街随便找。</p>
+    </div>
+    <div class="food-item">
+      <h5>正餐 · 苏帮菜</h5>
+      <p>松鼠桂鱼、响油鳝糊、清炒虾仁。<strong>松鹤楼</strong>或<strong>得月楼</strong>是老字号，本地人也会去吃。不便宜但正宗。</p>
+    </div>
+    <div class="food-item">
+      <h5>下午茶 · 慢下来</h5>
+      <p>找一家平江路支巷里的独立咖啡馆，或者直接去<strong>艺圃延光阁茶室</strong>喝碧螺春。不赶时间的话，评弹也值得听一场。</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- ==================== 杭 州 ==================== -->
+<div class="city-header hangzhou">
+  <h2>杭 州</h2>
+  <p class="tagline">「欲把西湖比西子，淡妆浓抹总相宜」— 建议停留 2 天</p>
+</div>
+
+<!-- 杭州地图 -->
+<div class="map-container">
+  <div class="map" id="map-hangzhou"></div>
+  <div class="map-caption">杭州景点分布 · 点击标记查看详情 · 西湖西岸和运河是两个核心区域</div>
+</div>
+
+<!-- 住宿 -->
+<div class="section">
+  <h3>住哪里 — 灵隐 / 龙井茶山片区</h3>
+  <p style="margin-bottom:16px; color:#555;">不要住市中心商圈。住在西湖西侧的灵隐或龙井村，推门就是茶山竹林，清晨鸟鸣唤醒，晚上只有虫声。</p>
+
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dragon_Well_Tea_Plantation,_Hangzhou_(3020076220).jpg?width=520" 
+         alt="龙井茶园" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23d5e8d4%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2218%22>龙井茶园</text></svg>'">
+    <div class="info">
+      <h4>殊胜龙井酒店</h4>
+      <p class="price">600 - 1,000 / 晚</p>
+      <p class="loc">龙井路2号 · 国家金鼎级文化主题酒店</p>
+      <p>窗外就是层叠的龙井茶园。70 间主题客房，有园林景观和有机餐厅。3000+ 好评。离西湖骑车 10 分钟、灵隐寺 15 分钟。早上推开窗看茶山晨雾是杭州最好的起床方式。</p>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hangzhou_-_West_Lake_-_panoramio_(1).jpg?width=520" 
+         alt="西湖" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23d5e8d4%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2218%22>灵隐民宿</text></svg>'">
+    <div class="info">
+      <h4>玩居 · 即见灵隐</h4>
+      <p class="price">500 - 800 / 晚</p>
+      <p class="loc">白乐桥283号 · 灵隐景区内</p>
+      <p>侘寂风设计，2023 年开业。4.9 分评分，老板服务超好。免费咖啡茶饮，提供接送。步行到灵隐寺 5 分钟。安静到晚上能听见竹林风声。</p>
+    </div>
+  </div>
+
+  <div class="hotel">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Xihu_longjing.jpg?width=520" 
+         alt="龙井村" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22520%22 height=%22200%22><rect fill=%22%23d5e8d4%22 width=%22520%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2218%22>龙井村民宿</text></svg>'">
+    <div class="info">
+      <h4>伍捌民宿（龙井村店）</h4>
+      <p class="price">400 - 700 / 晚</p>
+      <p class="loc">龙井村58号 · 核心茶区</p>
+      <p>窗外就是龙井茶田。简奢风格，榻榻米房型。老板是本地茶农，热情到让你觉得在走亲戚。早餐丰盛，免费停车。187 条评价中 183 条推荐。</p>
+    </div>
+  </div>
+  
+  <div class="info-box">
+    <h4>周边环境</h4>
+    <p>灵隐/龙井片区位于西湖西侧山里。<strong>灵隐寺</strong>（步行可达）、<strong>西湖</strong>（骑车 10-15 分钟）、<strong>龙井茶园</strong>（出门即是）、<strong>虎跑泉</strong>（公交 2 站）。有公交到市区，但建议骑车或打车——沿途都是茶山竹林的风景。<br>
+    <strong>注意：</strong>灵隐区域自驾需在西溪路 608 号停车场或小牙坞公交站换乘，景区内不允许社会车辆进入。</p>
+  </div>
+</div>
+
+<!-- 景点 -->
+<div class="section">
+  <h3>去哪里玩</h3>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hangzhou_-_West_Lake_panorama.jpg?width=900" 
+         alt="西湖全景" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>茅家埠 + 乌龟潭 — 西湖秘境</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">人少 90%</span>
+        <span class="tag">清晨最美</span>
+      </div>
+      <p>大多数游客挤在断桥和苏堤。但西湖西岸的<strong>茅家埠</strong>和<strong>乌龟潭</strong>，游客量不到主景区的十分之一。上香古道、百年香樟树群、湿地白鹭——这是本地人私藏的西湖。</p>
+      <div class="tip">
+        <strong>最佳时间：</strong>清晨 6:30 - 8:00 薄雾未散时最美，或傍晚 16:30 - 18:00 拍照光线绝佳。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake,_Hangzhou_-_panoramio_(5).jpg?width=900" 
+         alt="浴鹄湾" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>浴鹄湾 — 出片率最高的西湖角落</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">拍照圣地</span>
+        <span class="tag">秋季枫叶</span>
+      </div>
+      <p>霁虹桥长廊卧波水面，秋天枫香树红叶壮观。比北山街更安静，比断桥更上相。随手一拍就是江南意境。</p>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lingyin_Temple_2.JPG?width=900" 
+         alt="灵隐寺" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>灵隐寺 — 2025 年 12 月起已免票</h4>
+      <div class="tags">
+        <span class="tag updated">免费（2025.12起）</span>
+        <span class="tag">需提前 1 天预约</span>
+        <span class="tag">不接受当日预约</span>
+      </div>
+      <p>好消息：灵隐飞来峰景区（含灵隐寺、永福寺、韬光寺）自 2025 年 12 月 1 日起<strong>全面免票</strong>。开放时间 7:30-17:30（17:00 停止入园）。</p>
+      <div class="tip">
+        <strong>预约必看：</strong>必须提前至少 1 天通过支付宝/微信搜索「杭州灵隐飞来峰」小程序预约。分上午场（7:30-12:00）和下午场（12:00-17:00）。工作日限 3.5 万人/天，周末 5 万人/天，节假日 6.5 万人/天。<strong>首次爽约暂停预约 30 天</strong>，约了一定要去。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dragon_Well_Tea_Plantation,_Hangzhou_(3020076220).jpg?width=900" 
+         alt="龙坞茶村" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>龙坞茶村 — 比龙井村更原生态</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">茶山发呆</span>
+        <span class="tag">西湖龙井最大产区</span>
+      </div>
+      <p>占了西湖龙井 2.2 万亩保护基地中的 1.6 万亩。连绵茶山、清新空气、零商业化。找一片茶田边的石凳坐下来，泡一壶现采的龙井，看茶农在远处劳作——一个下午就这么过了。</p>
+      <div class="tip">
+        <strong>推荐：</strong>光明寺水库在茶山之间，拍茶山倒影极美。有免费露营区。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Baochu_Pagoda,_Hangzhou_China_-_panoramio.jpg?width=900" 
+         alt="孤山" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>孤山 — 西湖的文化高地</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">西泠印社</span>
+        <span class="tag">浙江省博物馆</span>
+      </div>
+      <p><strong>西泠印社</strong>可以免费参观（还能体验篆刻）。<strong>浙江省博物馆</strong>的青瓷馆和古琴馆是冷门好展。<strong>放鹤亭</strong>比断桥视野开阔、没有拥挤。一个上午足够逛完。</p>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Canal_at_Gongchen_Bridge_(20190807161044).jpg?width=900" 
+         alt="拱宸桥" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>小河直街 + 拱宸桥 — 运河边的市井杭州</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">清末老建筑</span>
+        <span class="tag">运河夜游</span>
+      </div>
+      <p><strong>小河直街</strong>保留了清末民初的老房子，河埠头能看到本地人洗衣聊天的日常。比河坊街清净十倍。<strong>拱宸桥</strong>旁的老厂房改成了文创园，工作日人很少。</p>
+      <div class="tip">
+        <strong>运河夜游：</strong>武林门码头出发（杭州大厦D座旁），经富义仓、小河直街到拱宸桥折返，全程约 1 小时。<strong>票价 100 元/人</strong>，班次 19:00 / 19:30 / 20:20。建议提前 10-20 分钟检票登船。
+      </div>
+    </div>
+  </div>
+
+  <div class="place">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_Grand_Canal_in_Hangzhou,_China.jpg?width=900" 
+         alt="馒头山" onerror="this.style.display='none'">
+    <div class="info">
+      <h4>馒头山社区 — 杭州老底子</h4>
+      <div class="tags">
+        <span class="tag">免费</span>
+        <span class="tag">零商业化</span>
+        <span class="tag">社区食堂 5 元猫耳朵</span>
+      </div>
+      <p>依山而建的老社区，杭州市井生活的缩影。没有游客、没有网红店，只有大爷在门口下棋、大妈在巷口择菜。社区食堂的猫耳朵 5 块钱一碗，便宜到不好意思。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 美食 -->
+<div class="section">
+  <h3>吃什么</h3>
+  <div class="food-grid">
+    <div class="food-item">
+      <h5>经典杭帮菜</h5>
+      <p>东坡肉、龙井虾仁、西湖醋鱼（争议大，量力而行）。<strong>知味观</strong>湖滨总店是老字号，<strong>外婆家</strong>本地连锁性价比高。</p>
+    </div>
+    <div class="food-item">
+      <h5>龙井虾仁避坑</h5>
+      <p>杭州很少有餐厅能做好这道菜。<strong>警惕用海虾仁冒充河虾仁</strong>。推荐<strong>龙井菜馆</strong>（龙井村店）或<strong>兰边碗</strong>（钱江路，39 年老店 2024 重开）。景区店多数平庸，别踩。</p>
+    </div>
+    <div class="food-item">
+      <h5>茶山农家菜</h5>
+      <p>住龙井/龙坞的话，找一家农家乐吃午饭。新鲜时蔬、土鸡汤、龙井虾仁用当天的茶叶炒——这是城里餐厅做不出的味道。</p>
+    </div>
+    <div class="food-item">
+      <h5>面食 + 喝茶</h5>
+      <p><strong>片儿川</strong>（雪菜笋片肉丝面）、猫耳朵、定胜糕、葱包桧。在龙井村或龙坞茶村的茶农家坐下来喝一杯明前龙井，花几十块钱泡一壶就好。</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- ==================== 交通详解 ==================== -->
+<div class="transport-section">
+  <h3>交通全攻略</h3>
+
+  <!-- 两城间地图 -->
+  <div class="map-container" style="margin-bottom: 24px;">
+    <div class="map" id="map-transit"></div>
+    <div class="map-caption">苏州 → 杭州 高铁约 150 公里 · 最快 30 分钟直达</div>
+  </div>
+
+  <div class="transport-route">
+    <h4>苏州 → 杭州（高铁）</h4>
+    <div class="route-detail">
+      <span class="station">苏州站</span>
+      <span class="arrow">→</span>
+      <span class="station">杭州东站</span>
+      <span class="duration">最快 ~30 分钟</span>
+    </div>
+    <ul>
+      <li><strong>二等座 58-129 元</strong>，一等座 93-208 元（价格取决于车次类型）</li>
+      <li>每天 100+ 趟班次，基本 10-15 分钟一班，不用担心买不到</li>
+      <li>最快的 G 字头高铁约 30 分钟，部分 D 字头动车 1-1.5 小时</li>
+      <li><strong>推荐从苏州站出发</strong>（老城区，地铁 2 号线 / 4 号线直达），到达杭州东站（地铁 1/4 号线换乘枢纽）</li>
+      <li>建议提前 3-5 天在 12306 APP 购票，周末和节假日尤其要抢票</li>
+    </ul>
+  </div>
+
+  <div class="transport-route">
+    <h4>苏州市内交通</h4>
+    <ul>
+      <li><strong>地铁 6 号线（2024 年新开）：</strong>「拙政园苏博」站是游览核心站点，2 号口出直达拙政园和苏州博物馆</li>
+      <li><strong>地铁 1 号线：</strong>临顿路站 → 平江路（步行 400 米），相门站 → 平江路南段</li>
+      <li><strong>老城区内：</strong>步行 + 打车最方便，各景点间距离不超过 3-4 公里</li>
+      <li><strong>西园寺 / 艺圃：</strong>在老城西侧，打车或骑共享单车 10-15 分钟可达</li>
+      <li>支付宝搜索「苏 e 行」开通地铁扫码乘车</li>
+    </ul>
+  </div>
+
+  <div class="transport-route">
+    <h4>杭州市内交通</h4>
+    <ul>
+      <li><strong>西湖周边不要开车！</strong>3-5 月、9-11 月双休日及节假日 8:00-17:00 限行（单日单号、双日双号）</li>
+      <li><strong>灵隐景区：</strong>社会车辆无法直接开入，在西溪路 608 号停车场或小牙坞公交站换乘</li>
+      <li><strong>地铁 + 接驳线：</strong>12 个地铁站有公交接驳直达西湖各景点。龙翔桥站、吴山广场站最常用</li>
+      <li><strong>共享单车：</strong>环湖骑行是最灵活的方式，茅家埠到孤山骑车 15 分钟</li>
+      <li><strong>运河区域（小河直街 / 拱宸桥）：</strong>地铁 5 号线大运河站或拱宸桥站</li>
+      <li>下载「杭州公共交通」APP 查询换乘路线</li>
+    </ul>
+  </div>
+
+  <div class="transport-route">
+    <h4>景点间参考距离</h4>
+    <ul>
+      <li><strong>苏州：</strong>平江路 → 拙政园（步行 5 分钟）→ 苏州博物馆（步行 3 分钟）→ 艺圃（打车 10 分钟）→ 西园寺（打车 8 分钟）→ 葑门横街（打车 15 分钟）</li>
+      <li><strong>杭州：</strong>灵隐寺 → 茅家埠（骑车 10 分钟）→ 孤山（骑车 15 分钟）→ 浴鹄湾（骑车 20 分钟）→ 小河直街（打车 25 分钟）→ 龙坞茶村（打车 30 分钟）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 行程节奏 ==================== -->
+<div class="rhythm">
+  <h3>松散节奏建议（不是行程表）</h3>
+  
+  <div class="day">
+    <strong>Day 1 · 苏州</strong><br>
+    到了先安顿。下午逛平江路支巷 → 艺圃喝茶坐一下午。晚上山塘街走走（只走前半段就好）。或者什么都不做，在酒店庭院里发呆。
+  </div>
+  
+  <div class="day">
+    <strong>Day 2 · 苏州</strong><br>
+    如果起得来：7:30 拙政园（避开人潮）→ 苏州博物馆（提前预约）。下午葑门横街觅食 → 西园寺吃素面撸猫。起不来就睡到自然醒，只做一件事。
+  </div>
+  
+  <div class="day">
+    <strong>Day 3 · 苏州 → 杭州</strong><br>
+    上午从苏州站坐高铁去杭州东站（最快 30 分钟，二等座 58-129 元）。下午到了先去茅家埠 / 乌龟潭散步。傍晚北山街找一家咖啡馆看日落。
+  </div>
+  
+  <div class="day">
+    <strong>Day 4 · 杭州</strong><br>
+    上午灵隐寺（记得提前 1 天预约！免费但必须约）或龙坞茶村发呆。下午小河直街 → 拱宸桥逛文创。傍晚运河夜游船（100 元/人，19:00 首班）。或者睡一上午，下午只去孤山。
+  </div>
+</div>
+
+<!-- ==================== 多角色 Review ==================== -->
+<div class="review-section">
+  <h3>多角色 Review 备注</h3>
+  
+  <div class="review-role">
+    <h4>旅行达人视角</h4>
+    <ul>
+      <li><strong>灵隐寺已免费：</strong>2025 年 12 月 1 日起免票，但必须提前 1 天预约（不接受当日），首次爽约暂停 30 天——务必约了就去</li>
+      <li><strong>拙政园有淡旺季价差：</strong>淡季 70 元（1-3/6/11-12 月），旺季 80-90 元（4-5/7-10 月），提前官网预约更稳</li>
+      <li><strong>苏州博物馆约不到怎么办：</strong>周末和节假日名额秒光，建议提前 7 天就约。约不到就在外面的忠王府花园拍照也很美</li>
+      <li><strong>运河夜游实际 100 元/人：</strong>不是 80 元，三个班次 19:00/19:30/20:20，武林门码头出发</li>
+    </ul>
+  </div>
+
+  <div class="review-role">
+    <h4>本地人视角</h4>
+    <ul>
+      <li><strong>哑巴生煎仍在营业：</strong>已验证，临顿路店 6:00-19:30，米其林推荐。排队很长，怕等的去苏安新村总店</li>
+      <li><strong>龙井虾仁要小心：</strong>杭州大部分餐厅做不好这道菜，用海虾仁充数很常见。推荐龙井菜馆（龙井村店）或兰边碗（39 年老店），景区店基本别碰</li>
+      <li><strong>西湖醋鱼争议大：</strong>文中已标注「量力而行」，这是正确的态度——本地人自己也分两派</li>
+      <li><strong>西园寺的猫确实很多：</strong>已验证近百只，松弛不怕人，可自带猫粮投喂</li>
+      <li><strong>馒头山社区很小众：</strong>确实零商业化，但这也意味着没有公共厕所等设施，做好心理准备</li>
+    </ul>
+  </div>
+
+  <div class="review-role">
+    <h4>交通规划视角</h4>
+    <ul>
+      <li><strong>苏州到杭州最快 30 分钟：</strong>原文写「1-1.5 小时」不准确，G 字头高铁最快约 30 分钟到杭州东站。D 字头动车约 1 小时</li>
+      <li><strong>推荐苏州站出发：</strong>位于老城区，地铁 2/4 号线直达，而非苏州北站。到达杭州东站后换乘地铁 1/4 号线</li>
+      <li><strong>苏州地铁 6 号线 2024 年新开：</strong>「拙政园苏博」站是游览核心站点，很多老攻略没有这个信息</li>
+      <li><strong>杭州西湖周末限行：</strong>3-5 月和 9-11 月的双休日/节假日 8:00-17:00 限行，自驾需注意。推荐地铁+骑行</li>
+      <li><strong>灵隐自驾不能直达：</strong>必须在西溪路 608 号停车场换乘，景区禁止社会车辆</li>
+      <li><strong>运河区域离西湖较远：</strong>小河直街/拱宸桥在城北，和西湖景区距离约 8-10 公里，建议安排在同一个半天，打车 25 分钟</li>
+    </ul>
+  </div>
+
+  <div class="review-role">
+    <h4>设计 / 体验视角</h4>
+    <ul>
+      <li><strong>图片 CDN：</strong>使用 Wikimedia Commons 免费图源，onerror 兜底 SVG 占位，避免图片加载失败时页面空白</li>
+      <li><strong>移动端适配：</strong>700px 以下自动切换单列布局，酒店卡片纵向排列，地图高度缩小到 320px</li>
+      <li><strong>交互地图：</strong>使用 Leaflet.js + OpenStreetMap，支持缩放平移，标注可点击查看详情</li>
+      <li><strong>信息密度：</strong>门票价格、开放时间、预约方式等实用信息已补充到各景点卡片中，减少查攻略的成本</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  <p>图片来源：Wikimedia Commons（CC-BY-SA）<br>
+  地图数据：OpenStreetMap 贡献者<br>
+  信息综合自本地宝、携程、知乎本地人推荐 · 已于 2026 年 5 月核实<br><br>
+  祝旅途愉快，不赶路才是旅行</p>
+</div>
+
+</div>
+
+<script>
+(function() {
+  var greenIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+  var goldIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+  var redIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+  var blueIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+
+  // Suzhou Map
+  var mapSZ = L.map('map-suzhou').setView([31.313, 120.625], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors', maxZoom: 18
+  }).addTo(mapSZ);
+
+  var szSpots = [
+    { pos: [31.3195, 120.6350], name: '平江路 (住宿区)', desc: '推荐住宿片区，出门即是水巷古街', icon: redIcon },
+    { pos: [31.3260, 120.6330], name: '拙政园', desc: '淡季70元/旺季80-90元 · 7:30开门 · 地铁6号线拙政园苏博站', icon: greenIcon },
+    { pos: [31.3240, 120.6310], name: '苏州博物馆', desc: '免费 · 需提前3-7天小程序预约 · 贝聿铭设计', icon: greenIcon },
+    { pos: [31.3230, 120.6370], name: '狮子林', desc: '30-40元 · 太湖石假山迷宫', icon: greenIcon },
+    { pos: [31.3190, 120.6140], name: '艺圃', desc: '10元 · 文衙弄5号 · 延光阁茶室碧螺春15-25元', icon: greenIcon },
+    { pos: [31.3140, 120.5970], name: '西园寺', desc: '5元 · 撸猫 · 素面10-15元 · 7:30-17:00', icon: greenIcon },
+    { pos: [31.3000, 120.6430], name: '葑门横街', desc: '免费 · 本地人菜市场 · 烟火气觅食', icon: goldIcon },
+    { pos: [31.3120, 120.6260], name: '哑巴生煎 (临顿路店)', desc: '米其林推荐 · 6:00-19:30 · 温家岸12号', icon: goldIcon },
+    { pos: [31.3270, 120.6290], name: '地铁6号线 拙政园苏博站', desc: '2024年新开 · 游览核心站点', icon: blueIcon },
+    { pos: [31.3155, 120.6330], name: '地铁1号线 临顿路站', desc: '平江路最近地铁站', icon: blueIcon }
+  ];
+  szSpots.forEach(function(s) {
+    L.marker(s.pos, { icon: s.icon }).addTo(mapSZ).bindPopup('<b>' + s.name + '</b><br>' + s.desc);
+  });
+
+  L.control.scale({ imperial: false }).addTo(mapSZ);
+
+  // Hangzhou Map
+  var mapHZ = L.map('map-hangzhou').setView([30.250, 120.130], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors', maxZoom: 18
+  }).addTo(mapHZ);
+
+  var hzSpots = [
+    { pos: [30.2400, 120.0980], name: '灵隐寺', desc: '2025.12起免费 · 需提前1天预约 · 7:30-17:30', icon: greenIcon },
+    { pos: [30.2240, 120.1220], name: '龙井村 (住宿区)', desc: '推荐住宿片区 · 茶山环绕 · 骑车10分钟到西湖', icon: redIcon },
+    { pos: [30.2400, 120.1150], name: '茅家埠', desc: '免费 · 西湖西岸秘境 · 清晨6:30最美', icon: greenIcon },
+    { pos: [30.2380, 120.1100], name: '乌龟潭', desc: '免费 · 人少90% · 湿地白鹭', icon: greenIcon },
+    { pos: [30.2350, 120.1380], name: '浴鹄湾', desc: '免费 · 出片率最高 · 霁虹桥', icon: greenIcon },
+    { pos: [30.2550, 120.1380], name: '孤山 · 西泠印社', desc: '免费 · 浙江省博物馆 · 放鹤亭', icon: greenIcon },
+    { pos: [30.3200, 120.1380], name: '拱宸桥', desc: '运河地标 · 文创园 · 地铁5号线拱宸桥站', icon: greenIcon },
+    { pos: [30.3150, 120.1280], name: '小河直街', desc: '免费 · 清末民初老建筑 · 市井日常', icon: greenIcon },
+    { pos: [30.2300, 120.1650], name: '馒头山社区', desc: '免费 · 零商业化 · 社区食堂5元猫耳朵', icon: goldIcon },
+    { pos: [30.2600, 120.1680], name: '武林门码头', desc: '运河夜游出发点 · 100元/人 · 19:00/19:30/20:20', icon: goldIcon },
+    { pos: [30.1950, 120.0850], name: '龙坞茶村', desc: '免费 · 西湖龙井最大产区 · 光明寺水库', icon: greenIcon },
+    { pos: [30.2640, 120.1670], name: '杭州东站方向 →', desc: '高铁到达站 · 地铁1/4号线枢纽', icon: blueIcon }
+  ];
+  hzSpots.forEach(function(s) {
+    L.marker(s.pos, { icon: s.icon }).addTo(mapHZ).bindPopup('<b>' + s.name + '</b><br>' + s.desc);
+  });
+
+  L.control.scale({ imperial: false }).addTo(mapHZ);
+
+  // Transit Overview Map
+  var mapTransit = L.map('map-transit').setView([30.78, 120.40], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors', maxZoom: 18
+  }).addTo(mapTransit);
+
+  var szStation = [31.3030, 120.6155];
+  var hzStation = [30.2908, 120.2195];
+
+  L.marker(szStation, { icon: redIcon }).addTo(mapTransit)
+    .bindPopup('<b>苏州站</b><br>老城区 · 地铁2/4号线<br>推荐出发站');
+  L.marker(hzStation, { icon: redIcon }).addTo(mapTransit)
+    .bindPopup('<b>杭州东站</b><br>地铁1/4号线枢纽<br>高铁到达站');
+
+  L.polyline([szStation, hzStation], {
+    color: '#e74c3c', weight: 3, dashArray: '10, 8', opacity: 0.8
+  }).addTo(mapTransit);
+
+  var midPoint = [(szStation[0] + hzStation[0]) / 2, (szStation[1] + hzStation[1]) / 2];
+  L.marker(midPoint, {
+    icon: L.divIcon({
+      className: 'transit-label',
+      html: '<div style="background:#e74c3c;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.3);">高铁 ~30分钟 · 二等座58-129元</div>',
+      iconSize: [200, 28], iconAnchor: [100, 14]
+    })
+  }).addTo(mapTransit);
+
+  L.control.scale({ imperial: false }).addTo(mapTransit);
+})();
+</script>
+
+</body>
+</html>
